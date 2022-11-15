@@ -1,5 +1,6 @@
 import json 
 import mysql.connector
+from mysql.connector import pooling
 
 # 讀取json檔案
 input_file = open(r'C:\Users\jacky\Desktop\taipei-day-trip\data\taipei-attractions.json', encoding='utf-8')
