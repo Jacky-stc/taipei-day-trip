@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import pooling
 
 # 讀取json檔案
-input_file = open(r'home\ubuntu\taipei-day-trip\data\taipei-attractions.json', encoding='utf-8')
+input_file = open(r'~\taipei-day-trip\data\taipei-attractions.json', encoding='utf-8')
 json_array = json.load(input_file)
 result = []
 for i in range(len(json_array['result']['results'])):
