@@ -11,10 +11,10 @@ for i in range(len(json_array['result']['results'])):
 
 images_data = []
 for i in result:
-    jpg_file = [] # 每一次大迴圈都要先將jpg_file重置，不然會變成所有資料一直疊加
-    for url in i.split("http"): # 先把每段網址以http分開
-        if url.endswith(("jpg","png")): # 確認每段網址是否以jpg、png做結尾
-            jpg_file.append("http"+url) # 由於split的特性會將作為分開的元素自動去除，所以需要再重新加上http才會是完整的網址
+    jpg_file = [] 
+    for url in i.split("http"): 
+        if url.endswith(("jpg","png")): 
+            jpg_file.append("http"+url) 
     images_data.append(jpg_file)
 
 
