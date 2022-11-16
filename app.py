@@ -35,6 +35,20 @@ def thankyou():
 	return render_template("thankyou.html")
 
 
+# 取得分類列表
+try:
+	connection_object = connection_pool.get_connection()
+	cursor = connection_object.cursor()
+	cursor.execute("select distinct category from attractions")
+	categories = cursor.fetchall()
+	category = []
+	for i in categories:
+		category.append(i[0])
+finally:
+	cursor.close()
+	connection_object.close()
+
+
 # 取得景點資料列表
 @app.route("/api/attractions")
 def attractions():
@@ -42,6 +56,7 @@ def attractions():
 	keyword = request.args.get("keyword", "")
 	data = []
 	try:
+		# 沒有附帶keyword的搜尋
 		if keyword == "":
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
@@ -76,7 +91,55 @@ def attractions():
 					"images":images_data[i]
 				}
 				data.append(result)
-		else:
+
+			if (len(attractions)-12)<0:
+				nextpage = None
+			else:
+				nextpage = page+1
+
+		# 附帶keyword進行景點類別完全比對的搜尋
+		if keyword in category:
+			connection_object = connection_pool.get_connection()
+			cursor = connection_object.cursor()
+			sql = "SELECT * FROM attractions WHERE category = %s LIMIT %s,%s"
+			val = (keyword,page*12,12)
+			cursor.execute(sql,val)
+			attractions = cursor.fetchall()
+
+			images_resource = []
+			for i in range(len(attractions)):
+				images_resource.append(attractions[i][9])
+
+			images_data = []
+			for i in range(len(images_resource)):
+				images = []
+				for url in images_resource[i].split("http"):
+					if url.endswith(("jpg", "png")):
+						images.append("http"+url)
+				images_data.append(images)
+
+			for i in range(len(attractions)):
+				result = {
+					"id":attractions[i][0],
+					"name":attractions[i][1],
+					"category":attractions[i][2],
+					"description":attractions[i][3],
+					"address":attractions[i][4],
+					"transport":attractions[i][5],
+					"mrt":attractions[i][6],
+					"lat":attractions[i][7],
+					"lng":attractions[i][8],
+					"images":images_data[i]
+				}
+				data.append(result)
+			
+			if (len(attractions)-12)<0:
+				nextpage = None
+			else:
+				nextpage = page+1
+
+		# 附帶keyword進行名稱模糊比對的搜尋
+		if keyword != "" and keyword not in category:
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
 			sql = "SELECT * FROM attractions WHERE name LIKE '%"+ keyword + "%' LIMIT %s,%s"
@@ -87,7 +150,6 @@ def attractions():
 			images_resource = []
 			for i in range(len(attractions)):
 				images_resource.append(attractions[i][9])
-			# print(images_data)
 
 			images_data = []
 			for i in range(len(images_resource)):
@@ -112,8 +174,13 @@ def attractions():
 					"images":images_data[i]
 				}
 				data.append(result)
+			
+			if (len(attractions)-12)<0:
+				nextpage = None
+			else:
+				nextpage = page+1
 
-		response = make_response({"nextPage": page+1, "data":data}, 200)
+		response = make_response({"nextPage": nextpage, "data":data}, 200)
 		headers = {
 				"Content-type":"application/json",
 				"Accept": "application/json",
@@ -196,7 +263,7 @@ def categories():
 
 		for i in categories:
 			result.append(i[0])
-		print(result)
+
 		headers = {
 			"Content-type":"application/json",
 			"Accept": "application/json",
@@ -207,7 +274,6 @@ def categories():
 		response.headers = headers
 
 		return response
-
 	except:
 		return {"error": True, "message": "伺服器內部錯誤"}, 500
 	finally:
