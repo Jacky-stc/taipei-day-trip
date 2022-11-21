@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <title>Taipei Trip 台北一日遊</title>
+</head>
+<div class="grayscale"></div>  
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar_text">台北一日遊</div>
+            <div class="navbar_list">
+                <button class="reservation" onclick="grayscale()">預定行程</button>
+                <button class="signin">登入/註冊</button>
+            </div>
+        </nav>
+    </header>
+    <div class="hero_section">
+        <div class="slogan">
+            <div style="font-size: 28px;">輕鬆享受台北一日悠閒</div>
+            <div style="font-size: 16px;">探索每個角落，體驗城市的深度旅遊行程</div>
+            <input class="search" placeholder="輸入景點名稱查詢"/><button onclick="search()"></button>
+            <div class="cat_list"></div>
+        </div>
+    </div>
+    <main>
+        <div class="attractions" id="root">
+            <div class="components">
+                <div class="image" id="img0">
+                    <div class="name" id="name0"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt0"></div>
+                    <div class="cat" id="cat0"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img1">
+                    <div class="name" id="name1"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt1"></div>
+                    <div class="cat" id="cat1"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img2">
+                    <div class="name" id="name2"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt2"></div>
+                    <div class="cat" id="cat2"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img3">
+                    <div class="name" id="name3"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt3"></div>
+                    <div class="cat" id="cat3"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img4">
+                    <div class="name" id="name4"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt4"></div>
+                    <div class="cat" id="cat4"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img5">
+                    <div class="name" id="name5"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt5"></div>
+                    <div class="cat" id="cat5"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img6">
+                    <div class="name" id="name6"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt6"></div>
+                    <div class="cat" id="cat6"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img7">
+                    <div class="name" id="name7"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt7"></div>
+                    <div class="cat" id="cat7"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img8">
+                    <div class="name" id="name8"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt8"></div>
+                    <div class="cat" id="cat8"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img9">
+                    <div class="name" id="name9"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt9"></div>
+                    <div class="cat" id="cat9"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img10">
+                    <div class="name" id="name10"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt10"></div>
+                    <div class="cat" id="cat10"></div>
+                </div>
+            </div>
+            <div class="components">
+                <div class="image" id="img11">
+                    <div class="name" id="name11"></div>
+                </div>
+                <div class="script">
+                    <div class="mrt" id="mrt11"></div>
+                    <div class="cat" id="cat11"></div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </main>
+    <footer>
+        <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
+    </footer>  
+    
+    <script type="text/javascript" src="fetch.js"></script>
+</body>
+</html>

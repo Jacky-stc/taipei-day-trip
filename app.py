@@ -2,7 +2,11 @@ from flask import *
 import mysql.connector
 from mysql.connector import pooling
 
-app=Flask(__name__)
+app=Flask(
+	__name__,
+	static_folder= "static",
+	static_url_path="/"
+)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
@@ -34,22 +38,7 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-
-# 取得分類列表
-try:
-	connection_object = connection_pool.get_connection()
-	cursor = connection_object.cursor()
-	cursor.execute("select distinct category from attractions")
-	categories = cursor.fetchall()
-	category = []
-	for i in categories:
-		category.append(i[0])
-finally:
-	cursor.close()
-	connection_object.close()
-
-
-# 取得景點資料列表
+# 取得景點資料列表API
 @app.route("/api/attractions")
 def attractions():
 	page = int(request.args.get("page", 0))
@@ -97,12 +86,12 @@ def attractions():
 			else:
 				nextpage = page+1
 
-		# 附帶keyword進行景點類別完全比對的搜尋
-		if keyword in category:
+		# 附帶keyword進行景點完全比對或名稱模糊比對的搜尋
+		if keyword != "":
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
-			sql = "SELECT * FROM attractions WHERE category = %s LIMIT %s,%s"
-			val = (keyword,page*12,12)
+			sql = "SELECT * FROM attractions WHERE category = %s or name LIKE '%"+ keyword + "%' LIMIT %s,%s"
+			val = (keyword,page*12, 12)
 			cursor.execute(sql,val)
 			attractions = cursor.fetchall()
 
@@ -117,48 +106,6 @@ def attractions():
 					if url.endswith(("jpg", "png")):
 						images.append("http"+url)
 				images_data.append(images)
-
-			for i in range(len(attractions)):
-				result = {
-					"id":attractions[i][0],
-					"name":attractions[i][1],
-					"category":attractions[i][2],
-					"description":attractions[i][3],
-					"address":attractions[i][4],
-					"transport":attractions[i][5],
-					"mrt":attractions[i][6],
-					"lat":attractions[i][7],
-					"lng":attractions[i][8],
-					"images":images_data[i]
-				}
-				data.append(result)
-			
-			if (len(attractions)-12)<0:
-				nextpage = None
-			else:
-				nextpage = page+1
-
-		# 附帶keyword進行名稱模糊比對的搜尋
-		if keyword != "" and keyword not in category:
-			connection_object = connection_pool.get_connection()
-			cursor = connection_object.cursor()
-			sql = "SELECT * FROM attractions WHERE name LIKE '%"+ keyword + "%' LIMIT %s,%s"
-			val = (page*12, 12)
-			cursor.execute(sql,val)
-			attractions = cursor.fetchall()
-
-			images_resource = []
-			for i in range(len(attractions)):
-				images_resource.append(attractions[i][9])
-
-			images_data = []
-			for i in range(len(images_resource)):
-				images = []
-				for url in images_resource[i].split("http"):
-					if url.endswith(("jpg", "png")):
-						images.append("http"+url)
-				images_data.append(images)
-
 			
 			for i in range(len(attractions)):
 				result = {
@@ -197,7 +144,7 @@ def attractions():
 		cursor.close()
 		connection_object.close()
 
-# 根據景點編號取得景點資料
+# 根據景點編號取得景點資料API
 @app.route("/api/attraction/<attractionId>")
 def attraction_id(attractionId):
 	try:
@@ -251,7 +198,7 @@ def attraction_id(attractionId):
 
 
 
-# 取得景點分類名稱列表
+# 取得景點分類名稱列表API
 @app.route("/api/categories")
 def categories():
 	try:
