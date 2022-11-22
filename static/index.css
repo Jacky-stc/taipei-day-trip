@@ -30,7 +30,10 @@ nav{
     font-weight: 700;
     font-size: 30px;
 }
-.navbar_list{
+.reservation{
+    font-size: 16px;
+}
+.signin{
     font-size: 16px;
 }
 .navbar_list > button{

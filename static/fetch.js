@@ -1,5 +1,5 @@
-const homepage_url = "http://54.178.226.6:3000/api/attractions"
-const category_url = "http://54.178.226.6:3000/api/categories"
+const homepage_url = "/api/attractions"
+const category_url = "/api/categories"
 const myDiv = document.getElementById("root")
 const category_list = document.querySelector(".cat_list")
 let nextpage = 1;
