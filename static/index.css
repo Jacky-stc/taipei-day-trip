@@ -1,0 +1,226 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    justify-content: center; 
+}
+.grayscale{
+    display: none;
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    z-index: 5555;
+    background-color: #757575;
+    opacity: 0.4;
+}
+nav{  
+    align-items: center;
+    margin: 0 auto;
+    width: 1200px;
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar_text{
+    color: #448899;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+}
+.reservation{
+    font-size: 16px;
+}
+.signin{
+    font-size: 16px;
+}
+.navbar_list > button{
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+}
+.navbar_list > button:hover{
+    transform: scale(1.06);
+}
+li{
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+}
+a{
+    text-decoration: none;
+}
+a:visited{
+    color: #000;
+}
+.hero_section{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 320px;
+    background-image: url("welcome-image.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+}
+.slogan{
+    width: 1200px;
+    margin: 0 auto;
+    font-family: 'Noto Sans TC';
+    color: #fff;
+    line-height: 48px;
+}
+.slogan >button{
+    width: 60px;
+    height: 46px;
+    background-color: #448899;
+    border: none;
+    background-image: url("icon_search.png");
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center;
+    vertical-align: bottom;
+}
+.slogan >button:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0px 2px 2px 0.5px #555;
+
+}
+.slogan >button:active{
+    transform: translateY(0px);
+    box-shadow: none;
+}
+.slogan >input{
+    width: 380px;
+    height: 46px;
+    border: none;
+    padding: 0;
+    padding-left: 20px;
+    font-family: 'Noto Sans TC';
+
+}
+.cat_list{
+    width: 400px;
+    height:auto;
+    background-color: #fff;
+    position: absolute;
+    margin-top: 2px;
+    border: 1px solid #dddddd;
+    display: grid;
+    grid-template-columns: repeat(3,115px);
+    grid-auto-rows: 46px;
+    display: none;
+}
+.categories{
+    
+    text-align: middle;
+    padding-left: 15px;
+    color: #555;
+}
+.categories:hover{
+    cursor: pointer;
+    background-color: #dddddd;
+}
+main{
+    width: 1200px;
+    margin: 50px auto;
+}
+.attractions{
+    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: 250px;
+}
+.components{
+    background-color: #FFF;
+    border: #dddddd 1px solid;
+    border-radius: 6px;
+    padding: 0px;
+}
+.image{
+    display: block;
+    margin: 0px;
+    width: 100%;
+    height: 200px;
+    background-color: #aaddaa;
+    overflow: hidden;
+    background-size: cover;
+    border: #fff 0px solid;
+    border-radius: 6px 6px 0px 0px;
+}
+.name{
+    width: 100%;
+    height: 40px;
+    background-color: #000;
+    position: relative;
+    top: 160px;
+    color: #fff;
+    font-family: 'Noto Sans TC';
+    opacity: 0.7;
+    padding-left: 12px;
+    line-height: 40px;
+    font-size: 16px;
+}
+.script{
+    display: flex;
+    justify-content: space-between;
+    line-height: 50px; 
+    padding: 0px 10px; 
+    color: #757575;
+    font-family: 'Noto Sans TC';
+    font-weight: 500;
+    font-size: 16px;
+    
+}
+
+footer{
+    width: 100%;
+    height:104px;
+    background-color: #757575;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copyright{
+    font-size: 16px;
+    color: #fff;
+    font-family: 'Noto Sans TC';
+}
+
+@media(max-width:1200px){
+    nav{
+        width: 90%;
+    }
+    main{
+        width: 90%;
+    }
+    .attractions{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .slogan{
+        width: 90%;
+    }
+    .slogan >input{
+        width: 50%;
+    }
+}
+@media(max-width:600px){
+    
+    .slogan{
+        padding-left: 20px;
+    }
+    .slogan >input{
+        width: 70%;
+    }
+   
+    .attractions{
+        grid-template-columns: 1fr;
+    }
+}
