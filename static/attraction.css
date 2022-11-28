@@ -1,0 +1,271 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    justify-content: center; 
+    font-family: 'Noto Sans TC';
+}
+.grayscale{
+    display: none;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 100px;
+    z-index: 9999;
+    background-color: #757575;
+    opacity: 0.4;
+}
+a{
+    text-decoration: none;
+}
+nav{  
+    align-items: center;
+    margin: 0 auto;
+    width: 1200px;
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar_text{
+    color: #448899;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+}
+.reservation{
+    font-size: 16px;
+}
+.signin{
+    font-size: 16px;
+}
+.navbar_list > button{
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+}
+.navbar_list > button:hover{
+    transform: scale(1.06);
+}
+.navbar_list > button:active{
+    transform: scale(1);
+}
+main{
+    width: 1200px;
+    margin: 50px auto;
+
+}
+.imgContainer{
+    display: inline-block;
+    position: relative;
+    width: 540px;
+    height: 400px;
+    margin-left: 15px;
+    overflow: hidden;
+}
+.attractionImg{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: none;
+    animation-name: fade;
+    animation-duration: 450ms;
+}
+@keyframes fade{
+    from{opacity: .2;}
+    to{opacity: 1;}
+}
+.prev{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-18px);
+    background-image: url("btn_leftArrow.png");
+}
+.next{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-18px);
+    background-image: url("btn_rightArrow.png");
+}
+.prev,.next{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-size: cover;
+    z-index: 1000;
+}
+.prev:hover,.next:hover{
+    transform: translateY(-20px);
+}
+.prev:active,.next:active{
+    transform: translateY(-18px);
+}
+.dotList{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    vertical-align: -10px;
+}
+.dot{
+    z-index: 1000;
+    margin: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+.dot:hover{
+    background-color: #757575;
+}
+.dot:active{
+    box-sizing: border-box;
+    background-color: #000;
+    border: 1px solid #fff;
+}
+.description{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 30px;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    
+}
+h3{
+    margin-top: 0px;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #666;
+}
+.catMrt{
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+}
+.order_area{
+    width: 100%;
+    height: 306px;
+    margin-top: 20px;
+    border-radius: 6px;
+    background-color: #e8e8e8;
+    color: #666;
+    font-size: 16px;
+}
+.morning_reservation, .afternoon_reservation{
+    display: inline-block;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: #fff;
+}
+.morning_reservation:hover, .afternoon_reservation:hover{
+    background-color: #448899;
+}
+.order_area span{
+    margin-right: 8px;
+}
+.order_area >button{
+    width: 154px;
+    height: 36px;
+    line-height: 18px;
+    margin: 25px 20px;
+    padding: 10px 20px;
+    background-color: #448899;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 400;
+    border: none;
+    border-radius: 6px;
+}
+.order_area >button:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0px 2px 2px 0.5px #555;
+}
+.order_area >button:active{
+    transform: translateY(0px);
+    box-shadow: none;
+}
+.paragraph >p{
+    padding: 10px;
+    font-size: 16px;
+}
+.paragraph >div{
+    padding: 10px; 
+    font-size: 16px;
+}
+.location_title,.traffic_title{
+    font-weight: 700;
+}
+footer{
+    width: 100%;
+    height:104px;
+    background-color: #757575;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copyright{
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+}
+@media(max-width:1200px){
+    nav{
+        width: 90%;
+    }
+    main{
+        width: 90%;
+    }
+    .imgContainer{
+        width: 40%;
+    }
+    .description{
+        width: 52%;
+    }
+}
+@media(max-width:740px){
+    main{
+        width: 100%;
+    }
+    .imgContainer{
+        width: 100%;
+        height: 350px;
+        margin: 0;
+    }
+    .description{
+        width: 94.5%;
+        margin: 0px 10px 0px ;
+        margin-bottom: 10px;
+    }
+    .order_area >button{
+        margin: 25px 0px 15px 20px;
+    }
+    .paragraph >p{
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+    .paragraph >div{
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+    
+
+}

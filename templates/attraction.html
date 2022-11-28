@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/attraction.css">
+    <title>Taipei Trip 台北一日遊</title>
+</head>
+<div class="grayscale"></div>  
+<body>
+    <header>
+        <nav class="navbar" >
+            <a href="/"><div class="navbar_text">台北一日遊</div></a>
+            <div class="navbar_list">
+                <button class="reservation">預定行程</button>
+                <button class="signin" onclick="grayscale()">登入/註冊</button>
+            </div>
+        </nav>
+    </header>
+    <hr/>
+    <main style="margin: 37px auto;">
+        <div class="imgContainer" id="img">
+            <a class="prev" onclick="prevImg()"></a>
+            <a class="next" onclick="nextImg()"></a>
+            <div class="dotList" id="dotList"></div>
+        </div>
+        <div class="description">
+            <h3 id="attraction_name"></h3>
+            <div class="catMrt">
+                <span id="catMrt"></span>
+                <span id="mrt"></span>
+            </div>
+            <div class="order_area">
+                <div style="font-weight: 700; padding: 15px 20px; ">訂購導覽行程</div>
+                <div style="font-weight: 500; padding-left: 20px; padding-bottom: 15px;">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                <div>
+                    <div style="display: inline;padding-left: 20px; font-weight: 700;">選擇日期：</div>
+                    <input type="date" style="padding: 5px 10px; font-weight: 500;"/>
+                </div>
+                <div style="padding: 15px 20px; font-weight: 700;">
+                    <div style="display: inline;">選擇時間：</div>
+                    <div style="display: inline;">
+                        <div class="morning_reservation" onclick="morning_reservation()"></div>
+                        <span style="font-weight: 500;">上半天</span>
+                        <div class="afternoon_reservation" onclick="afternoon_reservation()"></div>
+                        <span style="font-weight: 500;">下半天</span>
+                    </div>
+                        
+                </div>
+                <div>
+                    <div style="display: inline; padding-left: 20px; font-weight: 700;">導覽費用：</div>
+                    <div style="display: inline; font-weight: 500;" id="money">新台幣2000元</div>
+                </div>
+                <button>開始預約行程</button>
+            </div>
+        </div>
+        <hr style="margin-top: 37px;"/>
+    </main>
+    <main>
+        <div class="paragraph" >
+            <p id="info">平安鐘祈求大家的平安，這是為了紀念921地震週年的設計，在喧鬧的廣場上每個小時鳴鐘，保佑平安，祈禱臺灣不會再發生這樣的天災。雙手合十加上108個黃色的琉璃乳丁，隨著緩緩流下的水，在底下的一個小噴泉噴出。雙手合十的意義，一個是祈福，一個是包容，教我們要包容這樣的改變，撫平這樣的傷口。下面的水緩緩流出，代表著人的生命力是不斷地延續下去。緩緩地鐘聲，卻帶來心中的寧靜。 這個平安鐘是由建築師姚仁喜與琉璃創作家王俠軍共同設計，長6公尺、寬5公尺，以鑄銅製成，由法鼓山文教基金會全額出資。平安鐘點綴都市景觀，不時提醒大家，面對刻骨銘心的災難痛苦，更應該有謙卑的一顆心。</p>
+            <div class="location">
+                <div class="location_title">景點地址：</div>
+                <div class="location_content" id="address">台北市</div>
+            </div>
+            <div class="traffic">
+                <div class="traffic_title">交通方式：</div>
+                <div class="traffic_content" id="transport">捷運站名</div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
+    </footer>  
+    <script type="text/javascript" src="/attraction.js"></script>
+</body>
+</html>
