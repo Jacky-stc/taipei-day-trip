@@ -59,6 +59,7 @@ const observer = new IntersectionObserver(entries =>{
                 const newMrt = document.createElement("div")
                 const newCat = document.createElement("div")
                 newA.href = "/attraction/" + data.data[i]['id']
+                newA.className = "a"
                 newComponent.className = "components"
                 newImage.className = "image"
                 newName.className = "name"
@@ -148,7 +149,6 @@ const cat_list = document.querySelector(".cat_list")
 
 input_bar.addEventListener(
     "click", function(event){
-        console.log(event.eventPhase);
         cat_list.style.display = "grid";
         // 事件觸發後才有categories節點
         const categories = document.querySelectorAll(".categories")
