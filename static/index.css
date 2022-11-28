@@ -8,10 +8,11 @@ body{
 }
 .grayscale{
     display: none;
-    width: 100%;
-    min-height: 100%;
     position: absolute;
-    z-index: 5555;
+    top: 0%;
+    width: 100%;
+    height: 100px;
+    z-index: 9999;
     background-color: #757575;
     opacity: 0.4;
 }
@@ -46,17 +47,10 @@ nav{
 .navbar_list > button:hover{
     transform: scale(1.06);
 }
-li{
-    list-style: none;
-    display: inline;
-    margin-left: 10px;
+.navbar_list > button:active{
+    transform: scale(1);
 }
-a{
-    text-decoration: none;
-}
-a:visited{
-    color: #000;
-}
+
 .hero_section{
     display: flex;
     align-items: center;
@@ -130,6 +124,7 @@ main{
     width: 1200px;
     margin: 50px auto;
 }
+/* index.html */
 .attractions{
     width: 100%;
     display: grid;
@@ -137,11 +132,15 @@ main{
     grid-template-columns: repeat(4,1fr);
     grid-auto-rows: 250px;
 }
+a{
+    text-decoration: none;
+}
 .components{
     background-color: #FFF;
     border: #dddddd 1px solid;
     border-radius: 6px;
     padding: 0px;
+    cursor: pointer;
 }
 .image{
     display: block;
@@ -178,7 +177,6 @@ main{
     font-size: 16px;
     
 }
-
 footer{
     width: 100%;
     height:104px;
@@ -212,14 +210,12 @@ footer{
     }
 }
 @media(max-width:600px){
-    
     .slogan{
         padding-left: 20px;
     }
     .slogan >input{
         width: 70%;
     }
-   
     .attractions{
         grid-template-columns: 1fr;
     }
