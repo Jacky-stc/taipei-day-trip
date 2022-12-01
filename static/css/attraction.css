@@ -84,14 +84,14 @@ main{
     top: 50%;
     left: 10px;
     transform: translateY(-18px);
-    background-image: url("btn_leftArrow.png");
+    background-image: url("/img/btn_leftArrow.png");
 }
 .next{
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-18px);
-    background-image: url("btn_rightArrow.png");
+    background-image: url("/img/btn_rightArrow.png");
 }
 .prev,.next{
     display: inline-block;
@@ -118,6 +118,8 @@ main{
 }
 .dot{
     z-index: 1000;
+    box-sizing: border-box;
+    border: 1px solid #fff;
     margin: 4px;
     width: 12px;
     height: 12px;
@@ -129,9 +131,7 @@ main{
     background-color: #757575;
 }
 .dot:active{
-    box-sizing: border-box;
     background-color: #000;
-    border: 1px solid #fff;
 }
 .description{
     display: inline-block;

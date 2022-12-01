@@ -3,7 +3,6 @@ const category_url = "/api/categories"
 const myDiv = document.getElementById("root")
 const category_list = document.querySelector(".cat_list")
 let nextpage = 1;
-
 // 首次進入頁面自動讀取12筆資料進行呈現
 fetch(homepage_url,{method:"get"})
     .then((response)=>{
@@ -18,13 +17,12 @@ fetch(homepage_url,{method:"get"})
         }
     })
 ;
-
 // 製作景點類別列表
 fetch(category_url,{method:"get"})
     .then((response)=>{
         return response.json()
     }).then((data)=>{
-        for(i=0;i<data.data.length;i++){
+        for(let i=0;i<data.data.length;i++){
             const cat_list = document.createElement("div")
             cat_list.className = "categories"
             cat_list.setAttribute("id", "cat_list")
@@ -86,8 +84,6 @@ const observer = new IntersectionObserver(entries =>{
     
 })
 observer.observe(footer)
-
-
 // 輸入關鍵字進行景點檢索
 const search_content = document.querySelector(".search") 
 function search(){
@@ -143,10 +139,8 @@ function search(){
         
     }
 }
-
 const input_bar = document.querySelector(".search")
 const cat_list = document.querySelector(".cat_list")
-
 input_bar.addEventListener(
     "click", function(event){
         cat_list.style.display = "grid";
@@ -159,14 +153,28 @@ input_bar.addEventListener(
         };
     }
 )
-
 const grayscale_div = document.querySelector(".grayscale")
-function grayscale(){
+const login_background = document.querySelector(".login_background")
+const login = document.querySelector(".signin")
+const close_btn = document.querySelector(".close")
+login.addEventListener("click", ()=>{
     const nowHeight = document.querySelector("body").scrollHeight
     grayscale_div.style.height = nowHeight + "px"
     grayscale_div.style.display = "block"
-}
-window.addEventListener("click",(e)=>{
-    cat_list.style.display = "none",
+    login_background.style.display = "block"
+})
+login_background.addEventListener("click", ()=>{
+    const nowHeight = document.querySelector("body").scrollHeight
+    grayscale_div.style.height = nowHeight + "px"
+    grayscale_div.style.display = "block"
+    login_background.style.display = "block"
+})
+close_btn.addEventListener("click", (e)=>{
     grayscale_div.style.display = "none"
+    login_background.style.display = "none"
+    e.stopPropagation()
+})
+
+window.addEventListener("click",()=>{
+    cat_list.style.display = "none"
 },true)

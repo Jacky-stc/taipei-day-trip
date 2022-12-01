@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/booking.css">
+    <title>Taipei Trip 台北一日遊</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar" >
+            <a href="/"><div class="navbar_text">台北一日遊</div></a>
+            <div class="navbar_list">
+                <button class="reservation">預定行程</button>
+                <button class="signin" onclick="grayscale()">登入/註冊</button>
+            </div>
+        </nav>
+    </header>
+    <hr/>
+    <main>
+        <div class="reservation_info">
+            <div class="title">您好，Yakko，待預訂的行程如下：</div>
+            <div class="attraction">
+                <img class="attraction_img" src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000375.jpg">
+                <div class="attraction_info">
+                    <div class="attraction_title">台北一日遊：平安鐘</div><br/>
+                    <div class="attraction_content">日期：</div>
+                    <span>2021-04-23</span><br/>
+                    <div class="attraction_content">時間：</div>
+                    <span>早上9點到下午4點</span><br/>
+                    <div class="attraction_content">費用：</div>
+                    <span>新台幣2000元</span><br/>
+                    <div class="attraction_content">地點：</div>
+                    <span>台北市</span><br/>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="personal_info">
+            <div class="title">您的聯絡資訊</div>
+            <div class="content">聯絡姓名：</div>
+            <input><br/>
+            <div class="content">聯絡信箱：</div>
+            <input><br/>
+            <div class="content">手機號碼：</div>
+            <input><br/>
+            <div class="content">請保持手機連絡，準時抵達，導覽人員將用手機與您聯繫，務必留下正確的連絡方式。</div>
+        </div>
+        <hr/>
+        <div class="creditcard_info">
+            <div class="title">信用卡付款資訊</div>
+            <div class="content">卡片號碼：</div>
+            <input placeholder="**** **** **** ****"><br/>
+            <div class="content">過期時間：</div>
+            <input placeholder="MM/YY"><br/>
+            <div class="content">驗證密碼：</div>
+            <input placeholder="CVV"><br/>
+        </div>
+        <hr/>
+        <div style="text-align: right;">
+            <div class="money">總價：新台幣2000元</div>
+            <button>確認訂購並付款</button>
+        </div>
+    </main>
+    <footer>
+        <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
+    </footer>  
+</body>
+</html>

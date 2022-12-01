@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Taipei Trip 台北一日遊</title>
 </head>
 <div class="grayscale"></div>  
@@ -17,7 +17,7 @@
             <a href="/"><div class="navbar_text">台北一日遊</div></a>
             <div class="navbar_list">
                 <button class="reservation">預定行程</button>
-                <button class="signin" onclick="grayscale()">登入/註冊</button>
+                <button class="signin">登入/註冊</button>
             </div>
         </nav>
     </header>
@@ -27,6 +27,16 @@
             <div style="font-size: 16px;">探索每個角落，體驗城市的深度旅遊行程</div>
             <input class="search" placeholder="輸入景點名稱查詢"/><button onclick="search()"></button>
             <div class="cat_list"></div>
+        </div>
+        <div class="login_background">
+            <div class="login_area">
+                <img src="/img/icon_close.png" class="close"/>
+                <h3>登入會員帳號</h3>
+                <input type="email" placeholder="輸入電子信箱"/>
+                <input type="password" placeholder="輸入密碼"/>
+                <button>登入帳戶</button>
+                <a><div>還沒有帳戶？點此註冊</div></a>
+            </div>
         </div>
     </div>
     <main>
@@ -145,6 +155,6 @@
         <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
     </footer>  
     
-    <script type="text/javascript" src="fetch.js"></script>
+    <script type="module" src="/js/index.js"></script>
 </body>
 </html>

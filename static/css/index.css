@@ -12,7 +12,7 @@ body{
     top: 0%;
     width: 100%;
     height: 100px;
-    z-index: 9999;
+    z-index: 1111;
     background-color: #757575;
     opacity: 0.4;
 }
@@ -56,7 +56,7 @@ nav{
     align-items: center;
     width: 100%;
     height: 320px;
-    background-image: url("welcome-image.png");
+    background-image: url("/img/welcome-image.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left top;
@@ -73,7 +73,7 @@ nav{
     height: 46px;
     background-color: #448899;
     border: none;
-    background-image: url("icon_search.png");
+    background-image: url("/img/icon_search.png");
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: center;
@@ -120,11 +120,85 @@ nav{
     cursor: pointer;
     background-color: #dddddd;
 }
+.login_background{
+    display: none;
+    z-index: 9999;
+    position: fixed;
+    left: 50%;
+    margin-left: -170px;
+    width: 340px;
+    height: 275px;
+    background-color: #448899;
+    border-radius: 6px;
+}
+.login_area{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 265px;
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
+}
+.login_area >img{
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    cursor: pointer;
+}
+.login_area >img:hover{
+    transform: scale(1.1);
+}
+.login_area >h3{
+    width: 310px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 24px;
+    font-weight: 700;
+}
+.login_area >input{
+    margin: 5px 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 310px;
+    height: 47px;
+    padding: 15px;
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    font-weight: 500;
+    color: #757575;
+}
+.login_area >button{
+    margin: 5px 15px 10px;
+    padding: 10px 20px;
+    width: 310px;
+    height: 47px;
+    background-color: #448899;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 19px;
+    text-align: center;
+    cursor: pointer;
+}
+.login_area >a>div{
+    margin: 0px 15px;
+    width: 310px;
+    height: 22px;
+    text-align: center;
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+}
 main{
     width: 1200px;
     margin: 50px auto;
 }
-/* index.html */
 .attractions{
     width: 100%;
     display: grid;

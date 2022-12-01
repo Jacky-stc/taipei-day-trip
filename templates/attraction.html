@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/attraction.css">
+    <link rel="stylesheet" href="/css/attraction.css">
     <title>Taipei Trip 台北一日遊</title>
 </head>
 <div class="grayscale"></div>  
@@ -17,15 +17,15 @@
             <a href="/"><div class="navbar_text">台北一日遊</div></a>
             <div class="navbar_list">
                 <button class="reservation">預定行程</button>
-                <button class="signin" onclick="grayscale()">登入/註冊</button>
+                <button class="signin">登入/註冊</button>
             </div>
         </nav>
     </header>
     <hr/>
     <main style="margin: 37px auto;">
         <div class="imgContainer" id="img">
-            <a class="prev" onclick="prevImg()"></a>
-            <a class="next" onclick="nextImg()"></a>
+            <a class="prev"></a>
+            <a class="next"></a>
             <div class="dotList" id="dotList"></div>
         </div>
         <div class="description">
@@ -44,9 +44,9 @@
                 <div style="padding: 15px 20px; font-weight: 700;">
                     <div style="display: inline;">選擇時間：</div>
                     <div style="display: inline;">
-                        <div class="morning_reservation" onclick="morning_reservation()"></div>
+                        <div class="morning_reservation"></div>
                         <span style="font-weight: 500;">上半天</span>
-                        <div class="afternoon_reservation" onclick="afternoon_reservation()"></div>
+                        <div class="afternoon_reservation"></div>
                         <span style="font-weight: 500;">下半天</span>
                     </div>
                         
@@ -77,6 +77,6 @@
     <footer>
         <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
     </footer>  
-    <script type="text/javascript" src="/attraction.js"></script>
+    <script type="module" src="/js/attraction.js"></script>
 </body>
 </html>
