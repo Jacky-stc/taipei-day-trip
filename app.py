@@ -1,6 +1,7 @@
 from flask import *
 from api import api
 import os
+from flask_jwt_extended import *
 
 app=Flask(
 	__name__,
@@ -12,6 +13,15 @@ app.register_blueprint(api, url_prefix = "/api")
 
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_COOKIE_SECURE'] = False
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/api'
+app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
+app.config['JWT_COOKIE_CSRF_PROTECT'] = True
+app.config['JWT_SECRET_KEY'] = 'MY_SECRET_KEY'
+
+jwt = JWTManager(app)
 
 # Pages
 @app.route("/")

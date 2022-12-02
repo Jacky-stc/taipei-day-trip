@@ -25,17 +25,29 @@
         <div class="slogan">
             <div style="font-size: 28px;">輕鬆享受台北一日悠閒</div>
             <div style="font-size: 16px;">探索每個角落，體驗城市的深度旅遊行程</div>
-            <input class="search" placeholder="輸入景點名稱查詢"/><button onclick="search()"></button>
+            <input class="search" placeholder="輸入景點名稱查詢"/><button class="search_btn"></button>
             <div class="cat_list"></div>
         </div>
         <div class="login_background">
+            <img src="/img/icon_close.png" class="close"/>
             <div class="login_area">
-                <img src="/img/icon_close.png" class="close"/>
                 <h3>登入會員帳號</h3>
-                <input type="email" placeholder="輸入電子信箱"/>
-                <input type="password" placeholder="輸入密碼"/>
-                <button>登入帳戶</button>
-                <a><div>還沒有帳戶？點此註冊</div></a>
+                <form id="login_form">
+                    <input type="email" placeholder="輸入電子信箱" name="email"/>
+                    <input type="password" placeholder="輸入密碼" name="password"/>
+                    <button type="button" onclick="login_btn()" class="login_btn">登入帳戶</button>
+                </form>
+                <a><div class="switch_to_register">還沒有帳戶？點此註冊</div></a>
+            </div>
+            <div class="register_area">
+                <h3>註冊會員帳號</h3>
+                <form id="register_form">
+                    <input type="text" placeholder="輸入姓名" name="name"/>
+                    <input type="email" placeholder="輸入電子信箱" name="email"/>
+                    <input type="password" placeholder="輸入密碼" name="password"/>
+                    <button type="button" onclick="register_btn()" class="register_btn">註冊新帳戶</button>
+                </form>
+                <a><div class="switch_to_login">已經有帳戶了？點此登入</div></a>
             </div>
         </div>
     </div>
@@ -155,6 +167,7 @@
         <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
     </footer>  
     
-    <script type="module" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/user.js"></script>
 </body>
 </html>

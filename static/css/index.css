@@ -131,24 +131,34 @@ nav{
     background-color: #448899;
     border-radius: 6px;
 }
+.login_background>img{
+    position: absolute;
+    z-index: 100;
+    top: 17px;
+    right: 17px;
+    cursor: pointer;
+}
+.login_background >img:hover{
+    transform: scale(1.1);
+}
 .login_area{
     position: absolute;
-    bottom: 0px;
+    top: 10px;
     width: 100%;
     height: 265px;
     background-color: #fff;
     border-radius: 0 0 6px 6px;
 }
-.login_area >img{
+.register_area{
+    display: none;
     position: absolute;
-    top: 17px;
-    right: 17px;
-    cursor: pointer;
+    top: 10px;
+    width: 100%;
+    height: 322px;
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
 }
-.login_area >img:hover{
-    transform: scale(1.1);
-}
-.login_area >h3{
+.login_area>h3,.register_area>h3{
     width: 310px;
     text-align: center;
     margin-top: 15px;
@@ -158,7 +168,7 @@ nav{
     font-size: 24px;
     font-weight: 700;
 }
-.login_area >input{
+.login_area>form>input,.register_area>form>input{
     margin: 5px 15px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -171,7 +181,7 @@ nav{
     font-weight: 500;
     color: #757575;
 }
-.login_area >button{
+.login_area>form>button,.register_area>form>button{
     margin: 5px 15px 10px;
     padding: 10px 20px;
     width: 310px;
@@ -184,7 +194,7 @@ nav{
     text-align: center;
     cursor: pointer;
 }
-.login_area >a>div{
+.login_area>a>div,.register_area>a>div{
     margin: 0px 15px;
     width: 310px;
     height: 22px;

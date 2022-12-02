@@ -26,6 +26,7 @@ nav{
 .navbar_text{
     color: #448899;
     font-style: normal;
+    font-family: 'Noto Sans TC';
     font-weight: 700;
     font-size: 30px;
 }
