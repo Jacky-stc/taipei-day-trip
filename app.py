@@ -13,7 +13,7 @@ import requests
 dbconfig = {
 	"host" : "localhost",
 	"user" : "root",
-	"password" : "13579jacky",
+	"password" : "",
 	"database" : "taipei_day_trip"
 }
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(

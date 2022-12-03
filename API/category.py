@@ -5,7 +5,7 @@ from mysql.connector import pooling
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
-    "password" : "13579jacky",
+    "password" : "",
     "database" : "taipei_day_trip"
 }
 

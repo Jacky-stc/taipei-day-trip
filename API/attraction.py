@@ -5,7 +5,7 @@ from mysql.connector import pooling
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
-    "password" : "13579jacky",
+    "password" : "",
     "database" : "taipei_day_trip"
 }
 
@@ -32,7 +32,7 @@ def attractions():
 	data = []
 	try:
 		# 沒有附帶keyword的搜尋
-		if keyword == "":
+		if not keyword:
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
 			sql = "SELECT * FROM attractions LIMIT %s,%s"
@@ -69,7 +69,7 @@ def attractions():
 				nextpage = page+1
 
 		# 附帶keyword進行景點完全比對或名稱模糊比對的搜尋
-		if keyword != "":
+		if keyword:
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
 			sql = "SELECT * FROM attractions WHERE category = %s or name LIKE '%"+ keyword + "%' LIMIT %s,%s"
@@ -126,7 +126,7 @@ def attraction_id(attractionId):
 		cursor.execute("SELECT * FROM attractions WHERE id = %s" %attractionId)
 		attraction = cursor.fetchone()
 
-		if attraction != None:
+		if attraction:
 
 			images = []
 			for url in attraction[9].split("http"):
@@ -149,7 +149,7 @@ def attraction_id(attractionId):
 			response = make_response({"data":result}, 200)
 			response.headers = headers
 			return response
-		if attraction == None:
+		if not attraction:
 			return {
 				"error": True,
 				"message": "景點編號不正確"
