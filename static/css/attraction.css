@@ -89,6 +89,13 @@ nav{
     height: 275px;
     background-color: #448899;
     border-radius: 6px;
+    animation-name: fade_down ;
+    animation-duration:0.5s;
+
+}
+@keyframes fade_down{
+    from {transform: translateY(-20px);}
+    to {transform: translateY(0px);}
 }
 .login_background>img{
     position: absolute;
