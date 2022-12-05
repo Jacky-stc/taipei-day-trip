@@ -32,10 +32,9 @@ register_btn.addEventListener("click",()=>{
         return response.json()
     }).then((data)=>{
         if(data["ok"]){
-            // hint.textContent = "註冊成功"
-            // hint_container.style.display = "block"
-            // setTimeout(()=>{hint_container.style.display= "none"}, 2000)
-            console.log("Ok")
+            hint.textContent = "註冊成功"
+            hint_container.style.display = "block"
+            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
         }else{
             hint.textContent = "註冊失敗"
             hint_container.style.display = "block"
