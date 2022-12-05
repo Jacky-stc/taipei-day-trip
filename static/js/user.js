@@ -1,5 +1,19 @@
+// 驗證程序
+fetch("/api/user/auth", {method:'get'})
+.then(response=>{
+    return response.json()
+}).then(data=>{
+    if(data.data){
+        signin.textContent = "登出系統"
+    }else{
+        signin.textContent = "登入/註冊"
+    }
+})
+
 // 註冊程序
 const register_btn = document.querySelector(".register_btn")
+const hint_container = document.querySelector(".hint_container")
+const hint = document.querySelector(".hint")
 register_btn.addEventListener("click",()=>{
     let register_info = {
         "name":register_form.name.value.toString(),
@@ -18,10 +32,14 @@ register_btn.addEventListener("click",()=>{
         return response.json()
     }).then((data)=>{
         if(data["ok"]){
-            alert("註冊成功!")
-            location.href = "/"
+            // hint.textContent = "註冊成功"
+            // hint_container.style.display = "block"
+            // setTimeout(()=>{hint_container.style.display= "none"}, 2000)
+            console.log("Ok")
         }else{
-            alert(data["message"])
+            hint.textContent = "註冊失敗"
+            hint_container.style.display = "block"
+            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
         }
     })
 })
@@ -43,9 +61,11 @@ login_btn.addEventListener("click",()=>{
         return response.json()
     }).then(data=>{
         if(data["ok"]){
-            location.href = "/"
+            location.reload()
         }else{
-            alert(data["message"])
+            hint.textContent = "登入失敗"
+            hint_container.style.display = "block"
+            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
         }
         
     })
@@ -67,10 +87,22 @@ reservation_btn.addEventListener("click", ()=>{
 })
 // 顯示登入區塊
 signin.addEventListener("click", ()=>{
-    let nowHeight = document.querySelector("body").scrollHeight
-    grayscale_div.style.height = nowHeight + "px"
-    grayscale_div.style.display = "block"
-    login_background.style.display = "block"
+    if(signin.textContent == "登入/註冊"){
+        let nowHeight = document.querySelector("body").scrollHeight
+        grayscale_div.style.height = nowHeight + "px"
+        grayscale_div.style.display = "block"
+        login_background.style.display = "block"
+    }
+    else{ // 登出程序
+        fetch("/api/user/auth", {method:'delete'})
+        .then(response=>{
+            return response.json()
+        }).then(data=>{
+            if(data.ok){
+                location.reload()
+            }
+        })
+    }
 })
 login_background.addEventListener("click", ()=>{
     let nowHeight = document.querySelector("body").scrollHeight
@@ -95,6 +127,3 @@ switch_to_login.addEventListener("click",()=>{
     document.querySelector(".register_area").style.display = "none"
 })
 
-window.addEventListener("click",()=>{
-    cat_list.style.display = "none"
-},true)

@@ -41,7 +41,7 @@ const observer = new IntersectionObserver(entries =>{
             return ;
         }
         // 當沒有下一頁資料就不再執行
-        if(nextpage == null){
+        if(!nextpage){
             return;
         }
         fetch((homepage_url+"?page="+ nextpage + "&keyword=" + search_content.value),{method:"get"})
@@ -56,7 +56,7 @@ const observer = new IntersectionObserver(entries =>{
                 const newScript = document.createElement("div")
                 const newMrt = document.createElement("div")
                 const newCat = document.createElement("div")
-                newA.href = "/attraction/" + data.data[i]['id']
+                newA.href = "/attraction/" + data.data[i].id
                 newA.className = "a"
                 newComponent.className = "components"
                 newImage.className = "image"
@@ -64,10 +64,10 @@ const observer = new IntersectionObserver(entries =>{
                 newScript.className = "script"
                 newMrt.className = "mrt"
                 newCat.className = "cat"
-                newImage.style.backgroundImage = "url(" + data.data[i]['images'][0] +")"
-                newName.textContent = data.data[i]['name']
-                newMrt.textContent = data.data[i]['mrt']
-                newCat.textContent = data.data[i]['category']
+                newImage.style.backgroundImage = "url(" + data.data[i].images[0] +")"
+                newName.textContent = data.data[i].name
+                newMrt.textContent = data.data[i].mrt
+                newCat.textContent = data.data[i].category
                 newImage.appendChild(newName)
                 newScript.appendChild(newMrt)
                 newScript.appendChild(newCat)
@@ -95,7 +95,7 @@ search_btn.addEventListener("click", ()=>{
         .then((response)=>{
             return response.json();
         }).then((data)=>{
-            if(data.data[0]==undefined){
+            if(!data.data[0]){
                 alert("查無資料，請重新輸入關鍵字")
             }else{  
                 // 清除畫面
@@ -151,3 +151,6 @@ input_bar.addEventListener(
         };
     }
 )
+window.addEventListener("click",()=>{
+    cat_list.style.display = "none"
+},true)

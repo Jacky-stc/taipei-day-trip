@@ -5,7 +5,7 @@ from mysql.connector import pooling
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
-    "password" : "",
+    "password" : "13579jacky",
     "database" : "taipei_day_trip"
 }
 
@@ -15,12 +15,6 @@ connection_pool = mysql.connector.pooling.MySQLConnectionPool(
     pool_reset_session = True,
     **dbconfig
 )
-
-headers = {
-	"Content-type":"application/json",
-	"Accept": "application/json",
-	"Access-Control-Allow-Origin":"*"
-}
 
 category = Blueprint("category", __name__)
 
@@ -38,8 +32,9 @@ def categories():
 			result.append(category[0])
 
 		response = make_response({"data":result}, 200)
-		response.headers = headers
-
+		response.headers["Content-type"] = "application/json"
+		response.headers["Accept"] = "application/json"
+		response.headers["Access-Control-Allow-Origin"] = "*"
 		return response
 	except:
 		return {"error": True, "message": "伺服器內部錯誤"}, 500

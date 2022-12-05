@@ -120,9 +120,35 @@ nav{
     cursor: pointer;
     background-color: #dddddd;
 }
-.login_background{
+.hint_container{
     display: none;
     z-index: 9999;
+}
+.hint{
+    position: absolute;
+    z-index: 9999;
+    top: 40%;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d94600;
+    border-radius: 6px;
+    animation-name: fade_up;
+    animation-duration: 0.5s;
+}
+@keyframes fade_up{
+    from {transform: translateY(10px);}
+    to {transform: translateY(0px);}
+}
+.login_background{
+    display: none;
+    z-index: 5555;
     position: fixed;
     left: 50%;
     margin-left: -170px;
@@ -130,6 +156,13 @@ nav{
     height: 275px;
     background-color: #448899;
     border-radius: 6px;
+    animation-name: fadein ;
+    animation-duration:0.5s;
+
+}
+@keyframes fadein{
+    from {transform: translateY(-20px);}
+    to {transform: translateY(0px);}
 }
 .login_background>img{
     position: absolute;

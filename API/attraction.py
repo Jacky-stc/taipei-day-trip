@@ -5,7 +5,7 @@ from mysql.connector import pooling
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
-    "password" : "",
+    "password" : "13579jacky",
     "database" : "taipei_day_trip"
 }
 
@@ -17,12 +17,6 @@ connection_pool = mysql.connector.pooling.MySQLConnectionPool(
 )
 
 attraction = Blueprint("attraction", __name__)
-
-headers = {
-	"Content-type":"application/json",
-	"Accept": "application/json",
-	"Access-Control-Allow-Origin":"*"
-}
 
 # 取得景點資料列表API
 @attraction.route("/attractions")
@@ -106,7 +100,9 @@ def attractions():
 				nextpage = page+1
 
 		response = make_response({"nextPage": nextpage, "data":data}, 200)
-		response.headers = headers
+		response.headers["Content-type"] = "application/json"
+		response.headers["Accept"] = "application/json"
+		response.headers["Access-Control-Allow-Origin"] = "*"
 		return response
 	except:
 		return {
@@ -147,7 +143,9 @@ def attraction_id(attractionId):
 			}
 
 			response = make_response({"data":result}, 200)
-			response.headers = headers
+			response.headers["Content-type"] = "application/json"
+			response.headers["Accept"] = "application/json"
+			response.headers["Access-Control-Allow-Origin"] = "*"
 			return response
 		if not attraction:
 			return {

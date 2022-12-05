@@ -71,13 +71,3 @@ document.querySelector(".afternoon_reservation").addEventListener("click",()=>{
     document.querySelector(".afternoon_reservation").style.backgroundColor = "#448899"
     document.querySelector(".morning_reservation").style.backgroundColor = ""
 })
-const grayscale_div = document.querySelector(".grayscale")
-document.querySelector(".signin").addEventListener("click",()=>{
-    let nowHeight = document.querySelector("body").scrollHeight
-    grayscale_div.style.height = nowHeight + "px"
-    grayscale_div.style.display = "block"
-})
-
-window.addEventListener("click",(e)=>{
-    grayscale_div.style.display = "none"
-},true)

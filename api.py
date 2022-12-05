@@ -4,12 +4,13 @@ from mysql.connector import pooling
 
 from API.attraction import attraction
 from API.category import category
+from API.user import user
 
 
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
-    "password" : "",
+    "password" : "13579jacky",
     "database" : "taipei_day_trip"
 }
 
@@ -24,4 +25,4 @@ api = Blueprint("api", __name__)
 
 api.register_blueprint(attraction, url_prefix = "")
 api.register_blueprint(category, url_prefix = "")
-
+api.register_blueprint(user, url_prefix = "")
