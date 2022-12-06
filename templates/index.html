@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Taipei Trip 台北一日遊</title>
 </head>
 <div class="grayscale"></div>  
 <body>
+    <div class="hint_container">
+        <div class="hint"></div>
+    </div>
     <header>
         <nav class="navbar">
             <a href="/"><div class="navbar_text">台北一日遊</div></a>
             <div class="navbar_list">
                 <button class="reservation">預定行程</button>
-                <button class="signin" onclick="grayscale()">登入/註冊</button>
+                <button class="signin">登入/註冊</button>
             </div>
         </nav>
     </header>
@@ -25,10 +28,33 @@
         <div class="slogan">
             <div style="font-size: 28px;">輕鬆享受台北一日悠閒</div>
             <div style="font-size: 16px;">探索每個角落，體驗城市的深度旅遊行程</div>
-            <input class="search" placeholder="輸入景點名稱查詢"/><button onclick="search()"></button>
+            <input class="search" placeholder="輸入景點名稱查詢"/><button class="search_btn"></button>
             <div class="cat_list"></div>
         </div>
+        <div class="login_background">
+            <img src="/img/icon_close.png" class="close"/>
+            <div class="login_area">
+                <h3>登入會員帳號</h3>
+                <form id="login_form">
+                    <input type="email" placeholder="輸入電子信箱" name="email"/>
+                    <input type="password" placeholder="輸入密碼" name="password"/>
+                    <button type="button" class="login_btn">登入帳戶</button>
+                </form>
+                <a><div class="switch_to_register">還沒有帳戶？點此註冊</div></a>
+            </div>
+            <div class="register_area">
+                <h3>註冊會員帳號</h3>
+                <form id="register_form">
+                    <input type="text" placeholder="輸入姓名" name="name"/>
+                    <input type="email" placeholder="輸入電子信箱" name="email"/>
+                    <input type="password" placeholder="輸入密碼" name="password"/>
+                    <button type="button" class="register_btn">註冊新帳戶</button>
+                </form>
+                <a><div class="switch_to_login">已經有帳戶了？點此登入</div></a>
+            </div>
+        </div>
     </div>
+    
     <main>
         <div class="attractions" id="root">
             <a id="a0" class="a"><div class="components">
@@ -145,6 +171,7 @@
         <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
     </footer>  
     
-    <script type="text/javascript" src="fetch.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/user.js"></script>
 </body>
 </html>

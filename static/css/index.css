@@ -12,7 +12,7 @@ body{
     top: 0%;
     width: 100%;
     height: 100px;
-    z-index: 9999;
+    z-index: 1111;
     background-color: #757575;
     opacity: 0.4;
 }
@@ -56,7 +56,7 @@ nav{
     align-items: center;
     width: 100%;
     height: 320px;
-    background-image: url("welcome-image.png");
+    background-image: url("/img/welcome-image.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left top;
@@ -73,7 +73,7 @@ nav{
     height: 46px;
     background-color: #448899;
     border: none;
-    background-image: url("icon_search.png");
+    background-image: url("/img/icon_search.png");
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: center;
@@ -120,11 +120,128 @@ nav{
     cursor: pointer;
     background-color: #dddddd;
 }
+.hint_container{
+    display: none;
+    z-index: 9999;
+}
+.hint{
+    position: absolute;
+    z-index: 9999;
+    top: 40%;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d94600;
+    border-radius: 6px;
+    animation-name: fade_up;
+    animation-duration: 0.5s;
+}
+@keyframes fade_up{
+    from {transform: translateY(10px);}
+    to {transform: translateY(0px);}
+}
+.login_background{
+    display: none;
+    z-index: 5555;
+    position: fixed;
+    left: 50%;
+    margin-left: -170px;
+    width: 340px;
+    height: 275px;
+    background-color: #448899;
+    border-radius: 6px;
+    animation-name: fade_down ;
+    animation-duration:0.5s;
+
+}
+@keyframes fade_down{
+    from {transform: translateY(-20px);}
+    to {transform: translateY(0px);}
+}
+.login_background>img{
+    position: absolute;
+    z-index: 100;
+    top: 17px;
+    right: 17px;
+    cursor: pointer;
+}
+.login_background >img:hover{
+    transform: scale(1.1);
+}
+.login_area{
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    height: 265px;
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
+}
+.register_area{
+    display: none;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    height: 322px;
+    background-color: #fff;
+    border-radius: 0 0 6px 6px;
+}
+.login_area>h3,.register_area>h3{
+    width: 310px;
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 24px;
+    font-weight: 700;
+}
+.login_area>form>input,.register_area>form>input{
+    margin: 5px 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 310px;
+    height: 47px;
+    padding: 15px;
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    font-weight: 500;
+    color: #757575;
+}
+.login_area>form>button,.register_area>form>button{
+    margin: 5px 15px 10px;
+    padding: 10px 20px;
+    width: 310px;
+    height: 47px;
+    background-color: #448899;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 19px;
+    text-align: center;
+    cursor: pointer;
+}
+.login_area>a>div,.register_area>a>div{
+    margin: 0px 15px;
+    width: 310px;
+    height: 22px;
+    text-align: center;
+    font-family: 'Noto Sans TC';
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+}
 main{
     width: 1200px;
     margin: 50px auto;
 }
-/* index.html */
 .attractions{
     width: 100%;
     display: grid;

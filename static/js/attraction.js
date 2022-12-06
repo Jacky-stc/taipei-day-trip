@@ -14,13 +14,13 @@ fetch(attractionIdUrl, {method:"get"})
         return response.json()
     }).then((data)=>{
         imgLength = data.data['images'].length
-        for(i=0;i<imgLength;i++){
+        for(let i=0;i<imgLength;i++){
             let newImg = document.createElement("div")
             newImg.className = "attractionImg"
             newImg.style.backgroundImage = "url(" + data.data['images'][i] + ")"
             attractionImg.appendChild(newImg)  
         }
-        for(i=0;i<imgLength;i++){
+        for(let i=0;i<imgLength;i++){
             let newDot = document.createElement("span")
             newDot.className = "dot"
             dotList.appendChild(newDot)
@@ -36,52 +36,38 @@ fetch(attractionIdUrl, {method:"get"})
         document.querySelectorAll(".dot")[0].style.border = "1px solid #fff"
     })
 
-
-function nextImg(){
+// 下一張圖片
+document.querySelector(".next").addEventListener("click", ()=>{
     document.querySelectorAll(".attractionImg")[imgNow].style.display = "none"
     document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "#fff"
-    document.querySelectorAll(".dot")[imgNow].style.boxSizing = ""
-    document.querySelectorAll(".dot")[imgNow].style.border = "none"
     imgNow ++
     if(imgNow > imgLength-1){
         imgNow = 0
     }
     document.querySelectorAll(".attractionImg")[imgNow].style.display = "block"
     document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "black"
-    document.querySelectorAll(".dot")[imgNow].style.boxSizing = "border-box"
-    document.querySelectorAll(".dot")[imgNow].style.border = "1px solid #fff"
-}
-function prevImg(){
+})
+// 上一張圖片
+document.querySelector(".prev").addEventListener("click", ()=>{
     document.querySelectorAll(".attractionImg")[imgNow].style.display = "none"
     document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "#fff"
-    document.querySelectorAll(".dot")[imgNow].style.boxSizing = ""
-    document.querySelectorAll(".dot")[imgNow].style.border = "none"
     imgNow --
     if(imgNow < 0){
         imgNow = imgLength-1
     }
     document.querySelectorAll(".attractionImg")[imgNow].style.display = "block"
     document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "black"
-    document.querySelectorAll(".dot")[imgNow].style.boxSizing = "border-box"
-    document.querySelectorAll(".dot")[imgNow].style.border = "1px solid #fff"
-}   
+})
+// 選擇上半天行程
 document.querySelector(".morning_reservation").style.backgroundColor = "#448899"
-function morning_reservation(){
+document.querySelector(".morning_reservation").addEventListener("click",()=>{
     document.getElementById("money").textContent = "新台幣2000元"
     document.querySelector(".morning_reservation").style.backgroundColor = "#448899"
     document.querySelector(".afternoon_reservation").style.backgroundColor = ""
-}
-function afternoon_reservation(){
+})
+// 選擇下半天行程
+document.querySelector(".afternoon_reservation").addEventListener("click",()=>{
     document.getElementById("money").textContent = "新台幣2500元"    
     document.querySelector(".afternoon_reservation").style.backgroundColor = "#448899"
     document.querySelector(".morning_reservation").style.backgroundColor = ""
-}
-const grayscale_div = document.querySelector(".grayscale")
-function grayscale(){
-    const nowHeight = document.querySelector("body").scrollHeight
-    grayscale_div.style.height = nowHeight + "px"
-    grayscale_div.style.display = "block"
-}
-window.addEventListener("click",(e)=>{
-    grayscale_div.style.display = "none"
-},true)
+})
