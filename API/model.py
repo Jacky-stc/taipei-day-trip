@@ -1,7 +1,6 @@
 import mysql.connector
 from mysql.connector import pooling
 
-
 def imageInfo(image):
     images = []
     for url in image[9].split("http"):

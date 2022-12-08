@@ -102,7 +102,7 @@ def auth():
 		password = req['password']
 		valid = (
 		re.match("^\w+@\w+(\.\w+)*\.\w+$", email),
-		re.match("\w{8,100}", password)
+		re.match("\w{8,}", password)
 		)
 		if not valid:
 			return {
