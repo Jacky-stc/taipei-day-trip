@@ -100,9 +100,9 @@
     background-color: #fff;
     cursor: pointer;
 }
-/* .dot:nth-child(1){
+.dot:nth-child(1){
     background-color: #000;
-} */
+}
 .dotShow{
     background-color: #000;
 }
