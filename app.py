@@ -1,21 +1,6 @@
 from flask import *
 from api import api
 import os
-import mysql.connector
-from mysql.connector import pooling
-
-dbconfig = {
-	"host" : "localhost",
-	"user" : "root",
-	"password" : "13579jacky",
-	"database" : "taipei_day_trip"
-}
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-	pool_name = "taipei_day_trip",
-	pool_size = 5,
-	pool_reset_session = True,
-	**dbconfig
-)
 
 app=Flask(
 	__name__,
