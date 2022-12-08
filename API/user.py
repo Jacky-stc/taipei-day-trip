@@ -3,20 +3,17 @@ import mysql.connector
 from mysql.connector import pooling
 import jwt
 from datetime import datetime, timedelta
+import re
+from flask_bcrypt import Bcrypt
+from API.model import *
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-dbconfig = {
-	"host" : "localhost",
-	"user" : "root",
-	"password" : "13579jacky",
-	"database" : "taipei_day_trip"
-}
+dbPassword = os.getenv("dbPassword")
+JWTsecretKey = os.getenv("JWTsecretKey")
 
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-	pool_name = "taipei_day_trip",
-	pool_size = 5,
-	pool_reset_session = True,
-	**dbconfig
-)
+connection_pool = dbConnection(dbPassword)
 
 user = Blueprint("user", __name__)
 
@@ -24,17 +21,32 @@ user = Blueprint("user", __name__)
 @user.route("/user", methods = ['POST'])
 def register():
 	req = request.get_json()
+	name = req['name']
+	email = req['email']
+	password = req['password']
+	valid = (
+		re.match("^$", name),
+		re.match("^\w+@\w+(\.\w+)*\.\w+$", email),
+		re.match("\w{8,100}", password)
+	)
+	if not valid:
+		return {
+			"error":True,
+			"message": "不合法的輸入資料"
+		}, 400
+	else:
+		print("register commit")
+	connection_object = connection_pool.get_connection()
+	cursor = connection_object.cursor()
 	try:
-		connection_object = connection_pool.get_connection()
-		cursor = connection_object.cursor()
 		sql = "SELECT * FROM user WHERE email = %s"
-		val = (req['email'], )
+		val = (email, )
 		cursor.execute(sql,val)
 		result = cursor.fetchone()
 
 		if not result:
 			sql = "INSERT INTO user (name, email, password) VALUE(%s,%s,%s)"
-			val = (req['name'],req['email'],req['password'])
+			val = (name,email,password)
 			cursor.execute(sql,val)
 			connection_object.commit()			
 			return {"ok": True, "method":"post"},200
@@ -42,7 +54,7 @@ def register():
 			return {
 				"error": True,
 				"message":"註冊失敗，重複的Email或其他原因，請重新註冊"
-			},400
+			}, 400
 	except Exception as e:
 		print(e)
 		return {
@@ -54,7 +66,7 @@ def register():
 		connection_object.close()
 	
 
-@user.route("/user/auth", methods = ['GET','PUT', 'DELETE'])
+@user.route("/user/auth", methods = ['GET','PUT','DELETE'])
 def auth():
 	# 取得當前登入會員資訊
 	if request.method == 'GET':
@@ -63,7 +75,7 @@ def auth():
 		try:
 			JWTtoken = request.cookies.get('JWTtoken')
 			if JWTtoken:
-				docoded_token = jwt.decode(JWTtoken, "8df817d973ca4e33a6e394da0ded4f3a", algorithms="HS256")
+				docoded_token = jwt.decode(JWTtoken, JWTsecretKey, algorithms="HS256")
 				sql = "SELECT * FROM user WHERE id = %s "
 				val = (docoded_token["id"], )
 				cursor.execute(sql,val)
@@ -86,6 +98,20 @@ def auth():
 	# 登入會員帳戶
 	if request.method == 'PUT':
 		req = request.get_json()
+		email = req['email']
+		password = req['password']
+		valid = (
+		re.match("^\w+@\w+(\.\w+)*\.\w+$", email),
+		re.match("\w{8,100}", password)
+		)
+		if not valid:
+			return {
+				"error":True,
+				"message": "不合法的輸入資料"
+			}, 400
+		else:
+			print("login commit")
+			
 		connection_object = connection_pool.get_connection()
 		cursor = connection_object.cursor()
 		try:
@@ -97,7 +123,7 @@ def auth():
 				token = jwt.encode({
 					"id":result[0],
 					"exp": datetime.now() + timedelta(days = 7)
-				},'8df817d973ca4e33a6e394da0ded4f3a', algorithm="HS256")
+				}, JWTsecretKey, algorithm="HS256")
 				response = make_response({"ok":True}, 200)
 				response.headers["Content-type"] = "application/json"
 				response.headers["Accept"] = "application/json"
