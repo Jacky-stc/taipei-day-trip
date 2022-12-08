@@ -1,4 +1,4 @@
-// 驗證程序
+// 登入驗證程序
 fetch("/api/user/auth", {method:'get'})
 .then(response=>{
     return response.json()
@@ -8,6 +8,34 @@ fetch("/api/user/auth", {method:'get'})
     }else{
         signin.textContent = "登入/註冊"
     }
+})
+// 前端註冊驗證
+const register_name = document.querySelector("#register_name")
+register_name.addEventListener("input", ()=>{
+    if(register_name.validity.valueMissing){
+        register_name.setCustomValidity("姓名欄位不能為空白")
+    }else{
+        register_name.setCustomValidity("")
+    }
+    register_name.reportValidity()
+})
+const register_email = document.querySelector("#register_email")
+register_email.addEventListener("input", ()=>{
+    if(register_email.validity.patternMismatch){
+        register_email.setCustomValidity("不合法的email格式")
+    }else{
+        register_email.setCustomValidity("")
+    }
+    register_email.reportValidity()
+})
+const register_password = document.querySelector("#register_password")
+register_password.addEventListener("input", ()=>{
+    if(register_password.validity.patternMismatch){
+        register_password.setCustomValidity("需為英文或數字組合8位以上密碼")
+    }else{
+        register_password.setCustomValidity("")
+    }
+    register_password.reportValidity()
 })
 
 // 註冊程序
@@ -66,17 +94,14 @@ login_btn.addEventListener("click",()=>{
             hint_container.style.display = "block"
             setTimeout(()=>{hint_container.style.display= "none"}, 2000)
         }
-        
     })
 })
-
 
 const grayscale_div = document.querySelector(".grayscale")
 const login_background = document.querySelector(".login_background")
 const signin = document.querySelector(".signin")
 const close_btn = document.querySelector(".close")
 const reservation_btn = document.querySelector(".reservation")
-const login = document.querySelector(".login_btn")
 const switch_to_register = document.querySelector(".switch_to_register")
 const switch_to_login = document.querySelector(".switch_to_login")
 
