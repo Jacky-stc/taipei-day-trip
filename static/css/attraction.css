@@ -1,181 +1,3 @@
-html{
-    height: 100%;
-}
-body{
-    margin: 0px;
-    padding: 0px;
-    justify-content: center; 
-    font-family: 'Noto Sans TC';
-}
-.grayscale{
-    display: none;
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    height: 100px;
-    z-index: 1111;
-    background-color: #757575;
-    opacity: 0.4;
-}
-a{
-    text-decoration: none;
-}
-nav{  
-    align-items: center;
-    margin: 0 auto;
-    width: 1200px;
-    height: 54px;
-    display: flex;
-    justify-content: space-between;
-}
-.navbar_text{
-    color: #448899;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-}
-.reservation{
-    font-size: 16px;
-}
-.signin{
-    font-size: 16px;
-}
-.navbar_list > button{
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    padding: 0px;
-}
-.navbar_list > button:hover{
-    transform: scale(1.06);
-}
-.navbar_list > button:active{
-    transform: scale(1);
-}
-.hint_container{
-    display: none;
-    z-index: 9999;
-}
-.hint{
-    position: absolute;
-    z-index: 9999;
-    top: 40%;
-    left: 50%;
-    margin-left: -50px;
-    width: 100px;
-    height: 30px;
-    color: #fff;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #d94600;
-    border-radius: 6px;
-    animation-name: fade_up;
-    animation-duration: 0.5s;
-}
-@keyframes fade_up{
-    from {transform: translateY(10px);}
-    to {transform: translateY(0px);}
-}
-.login_background{
-    display: none;
-    z-index: 5555;
-    position: fixed;
-    left: 50%;
-    margin-left: -170px;
-    width: 340px;
-    height: 275px;
-    background-color: #448899;
-    border-radius: 6px;
-    animation-name: fade_down ;
-    animation-duration:0.5s;
-
-}
-@keyframes fade_down{
-    from {transform: translateY(-20px);}
-    to {transform: translateY(0px);}
-}
-.login_background>img{
-    position: absolute;
-    z-index: 100;
-    top: 17px;
-    right: 17px;
-    cursor: pointer;
-}
-.login_background >img:hover{
-    transform: scale(1.1);
-}
-.login_area{
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    height: 265px;
-    background-color: #fff;
-    border-radius: 0 0 6px 6px;
-}
-.register_area{
-    display: none;
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    height: 322px;
-    background-color: #fff;
-    border-radius: 0 0 6px 6px;
-}
-.login_area>h3,.register_area>h3{
-    width: 310px;
-    text-align: center;
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-bottom: 10px;
-    color: #666;
-    font-size: 24px;
-    font-weight: 700;
-}
-.login_area>form>input,.register_area>form>input{
-    margin: 5px 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 310px;
-    height: 47px;
-    padding: 15px;
-    font-family: 'Noto Sans TC';
-    font-size: 16px;
-    font-weight: 500;
-    color: #757575;
-}
-.login_area>form>button,.register_area>form>button{
-    margin: 5px 15px 10px;
-    padding: 10px 20px;
-    width: 310px;
-    height: 47px;
-    background-color: #448899;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 19px;
-    text-align: center;
-    cursor: pointer;
-}
-.login_area>a>div,.register_area>a>div{
-    margin: 0px 15px;
-    width: 310px;
-    height: 22px;
-    text-align: center;
-    font-family: 'Noto Sans TC';
-    font-size: 16px;
-    font-weight: 500;
-    color: #666;
-    cursor: pointer;
-}
-main{
-    width: 1200px;
-    margin: 50px auto;
-
-}
 .imgContainer{
     display: inline-block;
     position: relative;
@@ -184,18 +6,51 @@ main{
     margin-left: 15px;
     overflow: hidden;
 }
+.image{
+    width: 100%;
+    height: 100%;
+}
 .attractionImg{
+    display: inline-block;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    display: none;
     animation-name: fade;
     animation-duration: 450ms;
 }
 @keyframes fade{
     from{opacity: .2;}
     to{opacity: 1;}
+}
+.preload{
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+.loader{
+    display: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    left: 50%;
+    margin-left: -25px;
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #3498db;
+    border-right: 12px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: loading 1s linear infinite;
+}
+.show{
+    display: block;
+}
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    30%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);}
 }
 .prev{
     position: absolute;
@@ -244,6 +99,12 @@ main{
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
+}
+/* .dot:nth-child(1){
+    background-color: #000;
+} */
+.dotShow{
+    background-color: #000;
 }
 .dot:hover{
     background-color: #757575;
@@ -330,20 +191,6 @@ h3{
 }
 .location_title,.traffic_title{
     font-weight: 700;
-}
-footer{
-    width: 100%;
-    height:104px;
-    background-color: #757575;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.copyright{
-    font-weight: 700;
-    font-size: 16px;
-    color: #fff;
 }
 @media(max-width:1200px){
     nav{
