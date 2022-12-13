@@ -73,7 +73,7 @@
     border-radius: 6px;
     cursor: pointer;
     background-size: cover;
-    z-index: 1000;
+    z-index: 200;
 }
 .prev:hover,.next:hover{
     transform: translateY(-20px);
@@ -180,6 +180,9 @@ h3{
 .order_area >button:active{
     transform: translateY(0px);
     box-shadow: none;
+}
+.paragraph{
+    margin-top: 37px;
 }
 .paragraph >p{
     padding: 10px;

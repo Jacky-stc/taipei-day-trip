@@ -1,11 +1,11 @@
 import mysql.connector
 from mysql.connector import pooling
+import re
 
 def imageInfo(image):
     images = []
-    for url in image[9].split("http"):
-        if url.endswith("jpg"):
-            images.append("http" + url)
+    for url in image[9].split(","):
+        images.append(url)
     return images
 
 def imagesInfo(attractions):
@@ -62,3 +62,19 @@ def dbConnection(dbPassword):
 	**dbconfig
     )
     return connection_pool
+
+def nameValid(name) :
+    if re.match("^(?!\s*$).+", name):
+        return True
+    return False
+
+def emailValid(email) :
+    if re.match("^\w+@\w+(\.\w+)*\.\w+$", email):
+        return True
+    return False
+    
+def passwordValid(password) :
+    if re.match("\w{8,100}", password):
+        return True
+    return False
+    

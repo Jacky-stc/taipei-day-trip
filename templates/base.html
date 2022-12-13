@@ -20,8 +20,26 @@
         <nav class="navbar">
             <a href="/"><div class="navbar_text">台北一日遊</div></a>
             <div class="navbar_list">
-                <button class="reservation">預定行程</button>
+                <div class="cart-container">
+                    <img src="/img/shop_cart.png" class="shop-cart"/>
+                    <div class="order-hint"></div>
+                </div>
                 <button class="signin">登入/註冊</button>
+            </div>
+            <div class="shopping-block">
+                <img src="/img/profile_cart.png" class="profile-cart"/>
+                <span class="text">目前沒有預訂行程</span>
+                <div class="ordered-attractions">
+                    <img class="ordered-img"/>
+                    <div class="ordered-info">
+                        <div class="ordered-name"></div>
+                        <div class="ordered-date"></div>
+                        <div class="ordered-time"></div>
+                    </div>
+                </div>
+                <hr/>
+                <span class="order-num">共0個預訂行程</span>
+                <button class="check-order">查看預訂行程</button>
             </div>
         </nav>
     </header>
@@ -30,8 +48,8 @@
         <div class="login_area">
             <h3>登入會員帳號</h3>
             <form id="login_form">
-                <input type="email" placeholder="輸入電子信箱" name="email"/>
-                <input type="password" placeholder="輸入密碼" name="password"/>
+                <input type="email" placeholder="輸入電子信箱" name="email" id="login_email"/>
+                <input type="password" placeholder="輸入密碼" name="password" id="login_password"/>
                 <button type="button" class="login_btn">登入帳戶</button>
             </form>
             <a><div class="switch_to_register">還沒有帳戶？點此註冊</div></a>

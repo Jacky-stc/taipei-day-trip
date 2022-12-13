@@ -4,11 +4,13 @@ import * as model from "./model.js"
 const homepage_url = "/api/attractions"
 const category_url = "/api/categories"
 let nextpage = 1;
+
 // 首次進入頁面自動讀取12筆資料進行呈現
-model.fetchUrl(homepage_url,"get",view.basicPage)
+model.fetchUrl(homepage_url,"get",view.imageLoad)
 
 // 製作景點類別列表
 model.fetchUrl(category_url,"get",view.category)
+
 
 // 滾動讀取頁面，設置監聽target為<footer>
 const footer = document.querySelector(".copyright")
@@ -32,8 +34,8 @@ const observer = new IntersectionObserver(entries =>{
         scrollFetch()
     })
 })    
-
 observer.observe(footer)
+
 // 輸入關鍵字進行景點檢索
 const search_btn = document.querySelector(".search_btn")
 search_btn.addEventListener("click", ()=>{

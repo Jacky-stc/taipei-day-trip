@@ -1,17 +1,95 @@
-main >hr{
+main{
+    margin-top: 45px;
+    min-height: 0px;
+    overflow: hidden;
+}
+main hr{
+    width: 1200px;
     margin-top: 45px;
     border: 0.5px solid #e8e8e8;
 }
+.delete-block{
+    display: none;
+    z-index: 2000;
+    position: fixed;
+    left: 50%;
+    margin-left: -200px;
+    top: 30%;
+    width: 400px;
+    height: 200px;
+    background-color: #448899;
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px 0.5px #555;
+    overflow: hidden;
+}
+.delete-message{
+    width: 400px;
+    height: 180px;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    background-color: #fff;
+    border-radius: 0px 0px 6px 6px;
+    font-family: 'Noto Sans TC';
+    font-weight: 700;
+    color: #666;
+}
+.delete-confirm, .delete-cancel{
+    margin-top: 50px;
+    display: inline-block;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 10px;
+    background-color: #448899;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC';
+}
+.delete-cancel{
+    margin-left: 10px;
+}
+.delete-confirm{
+    margin-left: 40%;
+}
+.delete-confirm:hover, .delete-cancel:hover{
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 5px #000;
+}
+.delete-confirm:active, .delete-cancel:active{
+    transform: translateY(0px);
+    box-shadow: none;
+}
+.info{
+    padding-left: 110px;
+}
+.reservation{
+    position: relative;
+}
+.delete{
+    position: absolute;
+    top: 23px;
+    right: 100px;
+    cursor: pointer;
+}
+.delete:hover{
+    transform: translateY(-2px);
+}
+.delete:active{
+    transform: translateY(0px);
+}
+
 .attraction_img{
     display: inline-block;
     vertical-align: top;
     margin-top: 35px;
-    margin-left: 110px;
     width: 250px;
     height: 200px;
 }
 .attraction_info{
     display: inline-block;
+    position: relative;
+    width: 750px;
     margin-top: 35px;
 }
 .attraction_content{
@@ -37,8 +115,6 @@ span{
     color: #666;
 }
 .title{
-    margin-top: 44px;
-    margin-left: 110px;
     font-size: 19px;
     font-family: 'Noto Sans TC';
     font-weight: 700;
@@ -47,7 +123,6 @@ span{
 .content{
     display: inline-block;
     margin-top: 30px;
-    margin-left: 110px;
     font-size: 16px;
     font-family: 'Noto Sans TC';
     font-weight: 500;
@@ -91,4 +166,58 @@ main button:hover{
 main button:active{
     transform: translateY(0px);
     box-shadow: none;
+}
+@media(max-width:1200px){
+    nav{
+        width: 90%;
+    }
+    main{
+        width: 90%;
+
+    }
+    .info{
+        padding-left: 50px;
+    }
+    .delete{
+        right: 30px;
+    }
+    .attraction_info{
+        width: 60%;
+    }
+    .order_btn, .money{
+        margin-right: 50px;
+    }
+}
+@media(max-width:768px){
+    .info{
+        padding-left: 12px;
+    }
+    .delete{
+        position: relative;
+        left: 90%;
+        top: 20px;
+    }
+    .attraction_img{
+        width: 95%;
+        height: 300px;
+    }
+    .attraction_title,.attraction_content{
+        margin-left: 0px;
+    }
+    .attraction_info{
+        width: 90%;
+    }
+    .order_btn, .money{
+        margin-right: 0px;
+    }
+    .delete-block{
+        width: 300px;
+        margin-left: -150px;
+    }
+    .delete-message{
+        width: 300px;
+    }
+    .delete-confirm{
+        margin-left: 10%;
+    }
 }

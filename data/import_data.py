@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import pooling
 
 # 讀取json檔案
-input_file = open('taipei-attractions.json', encoding='utf-8')
+input_file = open('./data/taipei-attractions.json', encoding='utf-8')
 json_array = json.load(input_file)
 result = []
 for i in range(len(json_array['result']['results'])):
@@ -25,8 +25,10 @@ for i in range(len(images_data)):
         str_images += data
     images.append(str_images)    
 
+print(len(images_data))
 
-# 連接資料庫
+
+# # 連接資料庫
 dbconfig = {
     "host" : "localhost",
     "user" : "root",
@@ -44,9 +46,8 @@ try:
     connection_object = connection_pool.get_connection()
     cursor = connection_object.cursor()
     for i in range(len(json_array['result']['results'])):
-        sql = "INSERT INTO attractions (id, name, category, description, address, transport, mrt, lat, lng, images) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)" 
+        sql = "INSERT INTO attractions (name, category, description, address, transport, mrt, lat, lng) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)" 
         val =(
-            json_array['result']['results'][i]['_id'],
             json_array['result']['results'][i]['name'],
             json_array['result']['results'][i]['CAT'],
             json_array['result']['results'][i]['description'],
@@ -54,12 +55,16 @@ try:
             json_array['result']['results'][i]['direction'],
             json_array['result']['results'][i]['MRT'],
             json_array['result']['results'][i]['latitude'],
-            json_array['result']['results'][i]['longitude'], 
-            images[i]
+            json_array['result']['results'][i]['longitude']
         )
         cursor.execute(sql, val)
         connection_object.commit()
-  
+    for i in range(len(images_data)):
+        for data in images_data[i]:
+            sql = "insert into images (id, image) value (%s, %s)"
+            val = (i+1,data)
+            cursor.execute(sql,val)
+            connection_object.commit()
 finally:
     cursor.close()
     connection_object.close()

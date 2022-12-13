@@ -1,23 +1,45 @@
 // Fetch
 export async function fetchUrl(url,method,callback){
-    let fetchData = await fetch(url,{method:method})
-    let fetchResponse = await fetchData.json()
+    const fetchData = await fetch(url,{method:method})
+    const fetchResponse = await fetchData.json()
     callback(fetchResponse)
-    if(fetchResponse.data){
-        if(fetchResponse.data.images){
-            let imgLength = fetchResponse.data.images.length
-            return imgLength
-        }
-    }
+    return fetchResponse
 }
 // 註冊資料
 export const register_info = {
-    "name":register_form.name.value.toString(),
-    "email":register_form.email.value.toString(),
-    "password":register_form.password.value.toString()
+    "name":document.querySelector("#register_name").value,
+    "email":document.querySelector("#register_email").value,
+    "password":document.querySelector("#register_password").value
 }
 // 登入資料
 export const login_info = {
-    "email": login_form.email.value.toString(),
-    "password":login_form.password.value.toString()
+    "email": document.querySelector("#login_email").value,
+    "password":document.querySelector("#login_password").value
+}
+// 預定資料
+export function getBookingInfo(){
+    const attraction_id = window.location.pathname.replace("/attraction/","");
+    const date = document.querySelector(".date").value
+    let price = 0;
+    if(document.querySelector("#money").textContent === "新台幣2000元"){
+        price = 2000
+    }
+    if(document.querySelector("#money").textContent === "新台幣2500元"){
+        price = 2500
+    }
+    let time = "";
+    if(document.querySelector("#money").textContent === "新台幣2000元"){
+        time = "上半天"
+    }
+    if(document.querySelector("#money").textContent === "新台幣2500元"){
+        time = "下半天"
+    }
+    const bookingInfo = {
+        "attractionId": attraction_id,
+        "date":date,
+        "time":time,
+        "price":price
+    }
+    return bookingInfo
+
 }

@@ -17,36 +17,33 @@ connection_pool = dbConnection(dbPassword)
 
 user = Blueprint("user", __name__)
 
+bcrypt = Bcrypt()
+
 # 註冊會員帳號
 @user.route("/user", methods = ['POST'])
 def register():
 	req = request.get_json()
+	print(req['password'])
 	name = req['name']
 	email = req['email']
 	password = req['password']
-	valid = (
-		re.match("^$", name),
-		re.match("^\w+@\w+(\.\w+)*\.\w+$", email),
-		re.match("\w{8,100}", password)
-	)
-	if not valid:
+	if not (nameValid(name) and emailValid(email) and passwordValid(password)):
 		return {
 			"error":True,
 			"message": "不合法的輸入資料"
 		}, 400
-	else:
-		print("register commit")
-	connection_object = connection_pool.get_connection()
-	cursor = connection_object.cursor()
 	try:
+		connection_object = connection_pool.get_connection()
+		cursor = connection_object.cursor()
 		sql = "SELECT * FROM user WHERE email = %s"
 		val = (email, )
 		cursor.execute(sql,val)
 		result = cursor.fetchone()
-
+		
 		if not result:
+			hashed_password = bcrypt.generate_password_hash(password)
 			sql = "INSERT INTO user (name, email, password) VALUE(%s,%s,%s)"
-			val = (name,email,password)
+			val = (name,email,hashed_password)
 			cursor.execute(sql,val)
 			connection_object.commit()			
 			return {"ok": True, "method":"post"},200
@@ -62,8 +59,9 @@ def register():
 			"message": "伺服器內部錯誤"
 		}, 500
 	finally:
-		cursor.close()
-		connection_object.close()
+		if connection_object.is_connected():
+			cursor.close()
+			connection_object.close()
 	
 
 @user.route("/user/auth", methods = ['GET','PUT','DELETE'])
@@ -97,43 +95,39 @@ def auth():
 			connection_object.close()
 	# 登入會員帳戶
 	if request.method == 'PUT':
-		req = request.get_json()
-		email = req['email']
-		password = req['password']
-		valid = (
-		re.match("^\w+@\w+(\.\w+)*\.\w+$", email),
-		re.match("\w{8,}", password)
-		)
-		if not valid:
-			return {
-				"error":True,
-				"message": "不合法的輸入資料"
-			}, 400
-		else:
-			print("login commit")
-			
-		connection_object = connection_pool.get_connection()
-		cursor = connection_object.cursor()
 		try:
-			sql = "SELECT * FROM user WHERE email = %s and password = %s"
-			val = (req['email'],req['password'])
+			connection_object = connection_pool.get_connection()
+			cursor = connection_object.cursor()
+			req = request.get_json()
+			email = req['email']
+			password = req['password']
+			if not (emailValid(email) and passwordValid(password)):
+				return {
+					"error":True,
+					"message": "不合法的輸入資料"
+				}, 400
+			sql = "SELECT id, password FROM user WHERE email = %s"
+			val = (email, )
 			cursor.execute(sql,val)
 			result = cursor.fetchone()
 			if result:
-				token = jwt.encode({
-					"id":result[0],
-					"exp": datetime.now() + timedelta(days = 7)
-				}, JWTsecretKey, algorithm="HS256")
-				response = make_response({"ok":True}, 200)
-				response.headers["Content-type"] = "application/json"
-				response.headers["Accept"] = "application/json"
-				response.headers["Access-Control-Allow-Origin"] = "*"
-				response.headers["Set-Cookie"] = "JWTtoken=%s; path=/;"%token
+				hashed_password = result[1]
+				if bcrypt.check_password_hash(hashed_password, password):
+					token = jwt.encode({
+						"id":result[0],
+						"exp": datetime.now() + timedelta(days = 7)
+					}, JWTsecretKey, algorithm="HS256")
+					response = make_response({"ok":True}, 200)
+					response.headers["Content-type"] = "application/json"
+					response.headers["Accept"] = "application/json"
+					response.headers["Access-Control-Allow-Origin"] = "*"
+					response.headers["Set-Cookie"] = "JWTtoken=%s; path=/;"%token
 			if not result:
 				response =  make_response({
 					"error": True,
 					"message": "帳號密碼錯誤，請重新輸入。"
 				},400)
+
 			return response
 		except Exception as e:
 			print(e)
@@ -142,8 +136,9 @@ def auth():
 				"message": "伺服器內部錯誤"
 			},500
 		finally:
-			cursor.close()
-			connection_object.close()
+			if connection_object.is_connected():
+				cursor.close()
+				connection_object.close()
 				
 	# 登出會員帳戶
 	if request.method == 'DELETE':

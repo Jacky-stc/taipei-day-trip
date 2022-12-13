@@ -1,14 +1,3 @@
-// 基本畫面
-export function basicPage(data){
-    for(let i =0;i<12;i++){
-        document.getElementById("a"+i.toString()).href = "/attraction/" + data.data[i]['id']
-        document.getElementById("img"+i.toString()).style.backgroundImage = "url(" + data.data[i]['images'][0] + ")"
-        document.getElementById("name"+i.toString()).textContent = data.data[i]['name']
-        document.getElementById("mrt"+i.toString()).textContent = data.data[i]['mrt']
-        document.getElementById("cat"+i.toString()).textContent = data.data[i]['category']
-    }
-}
-
 // 主畫面刻劃
 export function imageLoad(data){
     const myDiv = document.getElementById("root")
@@ -70,6 +59,14 @@ export function cleanPage(){
 }
 
 // image preload
+export function imgTest(data){
+    let images = [];
+    let imgLength = data.data.images.length;
+    for(let i = 0;i<imgLength;i++){
+        images[i] = new Image();
+        images[i].src = data.data.images[i];
+    }
+}
 export function imgPreload(data){
     const attractionImg = document.getElementById("img")
     const dotList = document.getElementById("dotList")
@@ -81,6 +78,12 @@ export function imgPreload(data){
     const title = document.querySelector("title")
     let imgLength = 0
     imgLength = data.data.images.length
+    const images = [];
+    images.onload = hideLoader()
+    for(let i = 0; i<imgLength ; i++){
+        images[i] = new Image();
+        images[i].src = data.data.images[i];
+    }
     for(let i=0;i<imgLength;i++){
         let newImg = document.createElement("div")
         newImg.className = "attractionImg"
@@ -142,6 +145,13 @@ export function userCheck(data){
         signin.textContent = "登入/註冊"
     }
 }
+export function userLoginPop(data){
+    if(data.data){
+        location.href = "/booking"
+    }else{
+        showLoginArea()
+    }
+}
 // 前端輸入驗證
 export function nameCheck(){
     const register_name = document.querySelector("#register_name")
@@ -195,11 +205,18 @@ export function loginHint(data){
         setTimeout(()=>{hint_container.style.display= "none"}, 2000)
     }
 }
+export function hintPop(message){
+    const hintContainer = document.querySelector(".hint_container")
+    const hint = document.querySelector(".hint")
+    hint.textContent = message
+    hintContainer.display = "block"
+    setTimeout(()=>{hintContainer.style.display= "none"}, 2000)
+}
 // 顯示、關閉登入區塊
 export function showLoginArea(){
     const grayscale_div = document.querySelector(".grayscale")
     const login_background = document.querySelector(".login_background") 
-    let nowHeight = document.querySelector("body").scrollHeight
+    const nowHeight = document.querySelector("body").scrollHeight
     grayscale_div.style.height = nowHeight + "px"
     grayscale_div.style.display = "block"
     login_background.style.display = "block"
@@ -219,9 +236,100 @@ export function switchToLogin(){
     document.querySelector(".login_area").style.display = "block"
     document.querySelector(".register_area").style.display = "none"
 }
+// footer置底
+export function updateFooterPosition(){
+    const pageHeight = document.body.scrollHeight;
+    document.querySelector("footer").style.top = pageHeight + "px";
+}
 // 重整
 export function reload(data){
     if(data.ok){
         location.reload()
+    }
+}
+// booking畫面
+export function bookingUser(fetchResponse){
+    if(fetchResponse.data === null){
+        location.href = "/"
+    }else{
+        const userName = document.querySelector(".title")
+        userName.textContent = `您好，${fetchResponse.data.name}，待預訂的行程如下：`
+    }
+}
+export function bookingPage(data){
+    const result = data.data
+    if(result === null){
+        const remove = document.querySelectorAll(".remove")
+        for(let i =0;i<remove.length;i++){
+            remove[i].remove()
+        }
+        const hr = document.querySelectorAll("hr")
+        for(let i =0;i<hr.length;i++){
+            hr[i].remove()
+        }
+        const info = document.querySelector(".info")
+        const newContent = document.createElement("div")
+        newContent.className = "content"
+        newContent.textContent = "目前沒有任何待預訂的行程"
+        info.appendChild(newContent)
+        const main = document.querySelector("main")
+        main.style.minHeight = `0px`
+        const footer = document.querySelector("footer")
+        footer.style.height = `${document.body.scrollHeight-135}px`
+        
+    }else{
+        const attractionImg = document.querySelector(".attraction_img")
+        const attarctionTitle = document.querySelector(".attraction_title")
+        const date = document.querySelector(".date")
+        const time = document.querySelector(".time")
+        const price = document.querySelector(".price")
+        const address = document.querySelector(".address")
+        attractionImg.src = result.attraction.image
+        attarctionTitle.textContent = `台北一日遊： ${result.attraction.name}`
+        date.textContent = result.date
+        if(result.time === "上半天"){
+            time.textContent = `早上9點到下午2點`
+        }
+        if(result.time === "下半天"){
+            time.textContent = `下午2點到晚上7點`
+        }
+        price.textContent = `新台幣 ${result.price}元`
+        address.textContent = result.attraction.address
+    }
+}
+export function deleteMessage(data){
+    console.log(data)
+    if(data.ok === true){
+        location.reload()
+    }
+}
+export function mainResize(){
+    const main = document.querySelector("main")
+    const nowHeight = document.body.scrollHeight
+    main.style.minHeight = nowHeight-253 +"px"
+}
+export function shoppingCart(data){
+    if(data.data === null){
+        console.log("ok")
+        return
+    }
+    if(data.data && data.data.attraction){
+        const orderNum = document.querySelector(".order-num")
+        orderNum.textContent = `共1個預訂行程`
+        document.querySelector(".profile-cart").style.display = "none"
+        document.querySelector(".text").style.display = "none"
+        const orderAttractions = document.querySelector(".ordered-attractions")
+        const orderedImg = document.querySelector(".ordered-img")
+        const orderedName = document.querySelector(".ordered-name")
+        const orderedDate = document.querySelector(".ordered-date")
+        const orderedTime = document.querySelector(".ordered-time")
+        orderAttractions.style.display = "flex"
+        orderedImg.src = data.data.attraction.image
+        orderedName.textContent = `台北一日遊：${data.data.attraction.name}`
+        orderedDate.textContent = `日期：${data.data.date}`
+        orderedTime.textContent = `時間：${data.data.time}`
+        const orderHint = document.querySelector(".order-hint")
+        orderHint.style.display = "block"
+        orderHint.textContent = "1"
     }
 }
