@@ -263,7 +263,7 @@ export function bookingPage(data){
         for(let i =0;i<remove.length;i++){
             remove[i].remove()
         }
-        const hr = document.querySelectorAll("hr")
+        const hr = document.querySelectorAll("main hr")
         for(let i =0;i<hr.length;i++){
             hr[i].remove()
         }
@@ -298,7 +298,6 @@ export function bookingPage(data){
     }
 }
 export function deleteMessage(data){
-    console.log(data)
     if(data.ok === true){
         location.reload()
     }
@@ -310,7 +309,6 @@ export function mainResize(){
 }
 export function shoppingCart(data){
     if(data.data === null){
-        console.log("ok")
         return
     }
     if(data.data && data.data.attraction){
