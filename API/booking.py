@@ -24,7 +24,14 @@ def bookingAPI():
                 JWTtoken = request.cookies['JWTtoken']
                 decodedToken = jwt.decode(JWTtoken, JWTsecretKey, algorithms = "HS256")
                 userId = decodedToken['id']
-                sql = "select attractions.id ,attractions.name, attractions.address, any_value(images.image), any_value(booking.date), any_value(booking.time), any_value(booking.price) from attractions inner join booking on attractions.id = booking.attractionId inner join images on attractions.id = images.id where booking.userId = %s group by id;"
+                sql = """SELECT attractions.id ,attractions.name, attractions.address, 
+                any_value(images.image), any_value(booking.date), any_value(booking.time), 
+                any_value(booking.price) 
+                FROM attractions 
+                INNER JOIN booking on attractions.id = booking.attractionId 
+                INNER JOIN images on attractions.id = images.id 
+                WHERE booking.userId = %s 
+                GROUP BY id;"""
                 val = (userId, )
                 cursor.execute(sql, val)
                 bookingInfo = cursor.fetchone()

@@ -22,8 +22,14 @@ def attractions():
 		if not keyword:
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
-			sql = "SELECT attractions.id, attractions.name, attractions.category, attractions.description, attractions.address, attractions.transport, attractions.mrt, attractions.lat, attractions.lng, group_concat(images.image separator ',') from attractions inner join images on attractions.id = images.id group by attractions.id LIMIT %s,%s"
-			val = (page*12,12)
+			sql = """
+			SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
+			attractions.address, attractions.transport, attractions.mrt, 
+			attractions.lat, attractions.lng, group_concat(images.image separator ',') 
+			FROM attractions 
+			INNER JOIN images on attractions.id = images.id 
+			GROUP BY attractions.id LIMIT %s,%s"""
+			val = (page*12, 12)
 			cursor.execute(sql,val)
 			attractions = cursor.fetchall()
 
@@ -39,7 +45,14 @@ def attractions():
 		if keyword:
 			connection_object = connection_pool.get_connection()
 			cursor = connection_object.cursor()
-			sql = "SELECT attractions.id, attractions.name, attractions.category, attractions.description, attractions.address, attractions.transport, attractions.mrt, attractions.lat, attractions.lng, group_concat(images.image separator ',') from attractions inner join images on attractions.id = images.id WHERE attractions.category = %s or attractions.name LIKE '%"+ keyword + "%' group by attractions.id LIMIT %s,%s"
+			sql = """
+			SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
+			attractions.address, attractions.transport, attractions.mrt, attractions.lat, 
+			attractions.lng, group_concat(images.image separator ',') 
+			FROM attractions 
+			INNER JOIN images on attractions.id = images.id 
+			WHERE attractions.category = %s or attractions.name LIKE '%"+ keyword + "%' 
+			group by attractions.id LIMIT %s,%s"""
 			val = (keyword,page*12, 12)
 			cursor.execute(sql,val)
 			attractions = cursor.fetchall()
@@ -73,7 +86,14 @@ def attraction_id(attractionId):
 	try:
 		connection_object = connection_pool.get_connection()
 		cursor = connection_object.cursor()
-		cursor.execute("SELECT attractions.id, attractions.name, attractions.category, attractions.description, attractions.address, attractions.transport, attractions.mrt, attractions.lat, attractions.lng, group_concat(images.image separator ',') from attractions inner join images on attractions.id = images.id  WHERE attractions.id = %s group by attractions.id" %attractionId)
+		cursor.execute("""
+		SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
+		attractions.address, attractions.transport, attractions.mrt, attractions.lat, 
+		attractions.lng, group_concat(images.image separator ',') 
+		FROM attractions 
+		INNER JOIN images on attractions.id = images.id  
+		WHERE attractions.id = %s group by attractions.id""" 
+		%attractionId)
 		attraction = cursor.fetchone()
 		if attraction:
 			image = imageInfo(attraction)
