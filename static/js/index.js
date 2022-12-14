@@ -26,8 +26,8 @@ const observer = new IntersectionObserver(entries =>{
             return;
         }
         async function scrollFetch(){
-            let fetchData = await fetch(homepage_url+"?page="+ nextpage + "&keyword=" + search_content.value)
-            let fetchResponse = await fetchData.json()
+            const fetchData = await fetch(homepage_url+"?page="+ nextpage + "&keyword=" + search_content.value)
+            const fetchResponse = await fetchData.json()
             view.imageLoad(fetchResponse)
             nextpage = fetchResponse.nextPage
         }
@@ -43,14 +43,12 @@ search_btn.addEventListener("click", ()=>{
         alert("請輸入查詢資料")
     }else{
         async function searchFetch(){
-            let fetchData = await fetch(homepage_url+"?page=0" + "&keyword=" +  search_content.value)
-            let fetchResponse = await fetchData.json()
+            const fetchData = await fetch(homepage_url+"?page=0" + "&keyword=" +  search_content.value)
+            const fetchResponse = await fetchData.json()
             if(!fetchResponse.data[0]){
                 alert("查無資料，請重新輸入關鍵字")
             }else{  
-                // 清除畫面
                 view.cleanPage()
-                // 蓋上新搜尋結果
                 view.imageLoad(fetchResponse)
                 nextpage = fetchResponse.nextPage;
             }
@@ -63,7 +61,6 @@ const cat_list = document.querySelector(".cat_list")
 input_bar.addEventListener(
     "click", ()=>{
         cat_list.style.display = "grid";
-        // 事件觸發後才有categories節點
         const categories = document.querySelectorAll(".categories")
         view.catInput(categories)
     }

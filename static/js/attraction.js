@@ -71,7 +71,6 @@ bookingBtn.addEventListener("click",()=>{
             hint.textContent = "預訂失敗，請輸入正確的信息"
             hintContainer.style.display = "block"
             setTimeout(()=>{hintContainer.style.display= "none"}, 2000)
-
         }
         if(fetchData.status === 500){
             hint.textContent = "伺服器發生錯誤"

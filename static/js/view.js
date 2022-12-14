@@ -1,26 +1,23 @@
+export class CreateElement{
+    constructor(tag, className, textContent = ""){
+        this.e = document.createElement(tag)
+        this.e.className = className
+        this.e.textContent = textContent
+    }
+}
 // 主畫面刻劃
 export function imageLoad(data){
     const myDiv = document.getElementById("root")
-    for(let i =0;i<data.data.length;i++){
-        const newA = document.createElement("a")
-        const newComponent = document.createElement("div")
-        const newImage = document.createElement("div")
-        const newName = document.createElement("div")
-        const newScript = document.createElement("div")
-        const newMrt = document.createElement("div")
-        const newCat = document.createElement("div")
-        newA.href = "/attraction/" + data.data[i].id
-        newA.className = "a"
-        newComponent.className = "components"
-        newImage.className = "image"
-        newName.className = "name"
-        newScript.className = "script"
-        newMrt.className = "mrt"
-        newCat.className = "cat"
-        newImage.style.backgroundImage = "url(" + data.data[i].images[0] +")"
-        newName.textContent = data.data[i].name
-        newMrt.textContent = data.data[i].mrt
-        newCat.textContent = data.data[i].category
+    data.data.forEach((value)=>{
+        const newA = new CreateElement("a", "a").e
+        const newComponent = new CreateElement("div", "components").e
+        const newImage = new CreateElement("div", "image").e
+        const newName = new CreateElement("div", "name", value.name).e
+        const newScript = new CreateElement("div", "script").e
+        const newMrt = new CreateElement("div", "mrt", value.mrt).e
+        const newCat = new CreateElement("div", "cat", value.category).e
+        newA.href = `/attraction/${value.id}`
+        newImage.style.backgroundImage = `url(${value.images[0]})`
         newImage.appendChild(newName)
         newScript.appendChild(newMrt)
         newScript.appendChild(newCat)
@@ -28,45 +25,35 @@ export function imageLoad(data){
         newComponent.appendChild(newScript)
         newA.appendChild(newComponent)
         myDiv.appendChild(newA)
-        }
+    })
 }
 // 景點類別列表
 export function category(data){
-    const category_list = document.querySelector(".cat_list")
-    for(let i=0;i<data.data.length;i++){
-        const cat_list = document.createElement("div")
-        cat_list.className = "categories"
-        cat_list.setAttribute("id", "cat_list")
-        cat_list.textContent = data.data[i]
-        category_list.appendChild(cat_list)
-    }
+    const categoryList = document.querySelector(".cat_list")
+    data.data.forEach((category)=>{
+        const catList = new CreateElement("div", "categories", category).e
+        catList.setAttribute("id", "cat_list")
+        categoryList.appendChild(catList)
+    })
 }
 // 類別點擊輸入搜尋欄
 export function catInput(categories){
-    const input_bar = document.querySelector(".search")
-    for(let i=0;i<categories.length;i++){
-        categories[i].addEventListener("click", ()=>{
-            input_bar.value = categories[i].textContent
+    const inputBar = document.querySelector(".search")
+    categories.forEach((category)=>{
+        value.addEventListener("click", ()=>{
+            inputBar.value = category.textContent
         })
-    };
+    })
 }
 // 清除畫面
 export function cleanPage(){
-    const element = document.querySelectorAll(".a")
-    for(let i=0;i<element.length;i++){
-        element[i].remove();
-    }
+    const elements = document.querySelectorAll(".a")
+    elements.forEach((element)=>{
+        element.remove();
+    })
 }
 
 // image preload
-export function imgTest(data){
-    let images = [];
-    let imgLength = data.data.images.length;
-    for(let i = 0;i<imgLength;i++){
-        images[i] = new Image();
-        images[i].src = data.data.images[i];
-    }
-}
 export function imgPreload(data){
     const attractionImg = document.getElementById("img")
     const dotList = document.getElementById("dotList")
@@ -78,23 +65,13 @@ export function imgPreload(data){
     const title = document.querySelector("title")
     let imgLength = 0
     imgLength = data.data.images.length
-    const images = [];
-    images.onload = hideLoader()
-    for(let i = 0; i<imgLength ; i++){
-        images[i] = new Image();
-        images[i].src = data.data.images[i];
-    }
-    for(let i=0;i<imgLength;i++){
-        let newImg = document.createElement("div")
-        newImg.className = "attractionImg"
-        newImg.style.backgroundImage = "url(" + data.data.images[i] + ")"
-        attractionImg.appendChild(newImg)  
-    }
-    for(let i=0;i<imgLength;i++){
-        let newDot = document.createElement("span")
-        newDot.className = "dot"
+    data.data.images.forEach((image)=>{
+        const newImg = new CreateElement("div", "attractionImg").e
+        newImg.style.backgroundImage = `url(${image})`
+        attractionImg.appendChild(newImg)
+        const newDot = new CreateElement("span", "dot").e
         dotList.appendChild(newDot)
-    }
+    })
     title.textContent = data.data.name
     attractionName.textContent = data.data.name
     attractionCatmrt.textContent = data.data.category+"at"+data.data.mrt
@@ -112,8 +89,6 @@ export function hideLoader(){
     loader.classList.remove("show")
     document.querySelector(".preload").style.display = "none"
 }
-
-
 // 前一張圖片
 export function viewedImg(imgNow){
     document.querySelectorAll(".attractionImg")[imgNow].style.display = "none"
@@ -260,23 +235,20 @@ export function bookingPage(data){
     const result = data.data
     if(result === null){
         const remove = document.querySelectorAll(".remove")
-        for(let i =0;i<remove.length;i++){
-            remove[i].remove()
-        }
+        remove.forEach((element)=>{
+            element.remove()
+        })
         const hr = document.querySelectorAll("main hr")
-        for(let i =0;i<hr.length;i++){
-            hr[i].remove()
-        }
+        hr.forEach((element)=>{
+            element.remove()
+        })
         const info = document.querySelector(".info")
-        const newContent = document.createElement("div")
-        newContent.className = "content"
-        newContent.textContent = "目前沒有任何待預訂的行程"
+        const newContent = new CreateElement("div", "content", "目前沒有任何待預定的行程")
         info.appendChild(newContent)
         const main = document.querySelector("main")
         main.style.minHeight = `0px`
         const footer = document.querySelector("footer")
-        footer.style.height = `${document.body.scrollHeight-135}px`
-        
+        footer.style.height = `${document.body.scrollHeight-135}px`    
     }else{
         const attractionImg = document.querySelector(".attraction_img")
         const attarctionTitle = document.querySelector(".attraction_title")

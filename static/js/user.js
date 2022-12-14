@@ -28,14 +28,14 @@ register_btn.addEventListener("click",()=>{
         "password":document.querySelector("#register_password").value
     }
     async function registerCheck(){
-        let fetchData = await fetch("/api/user",{
+        const fetchData = await fetch("/api/user",{
             method:"post",
             headers: {
             'Content-type' :'application/json; charset=UTF-8',
             'Accept':'application/json'
             },
             body: JSON.stringify(register_info)})
-        let fetchResponse = await fetchData.json()
+        const fetchResponse = await fetchData.json()
         view.registerHint(fetchResponse)
     }
     registerCheck()
@@ -48,14 +48,14 @@ login_btn.addEventListener("click",()=>{
         "password":document.querySelector("#login_password").value
     }
     async function loginCheck(){
-        let fetchData = await fetch("/api/user/auth",{
+        const fetchData = await fetch("/api/user/auth",{
             method:"put",
             headers: {
             'Content-type' :'application/json; charset=UTF-8',
             'Accept':'application/jason'
             },
             body: JSON.stringify(login_info)})
-        let fetchResponse = await fetchData.json()
+        const fetchResponse = await fetchData.json()
         view.loginHint(fetchResponse)
     }
     loginCheck()
