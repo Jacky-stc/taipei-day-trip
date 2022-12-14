@@ -2,7 +2,7 @@
 export async function fetchUrl(url,method,callback){
     const fetchData = await fetch(url,{method:method})
     const fetchResponse = await fetchData.json()
-    print(fetchResponse)
+    console.log(fetchResponse)
     callback(fetchResponse)
     return fetchResponse
 }
