@@ -192,15 +192,15 @@ export function showLoginArea(){
     const grayscale_div = document.querySelector(".grayscale")
     const login_background = document.querySelector(".login_background") 
     const nowHeight = document.querySelector("body").scrollHeight
-    grayscale_div.style.height = nowHeight + "px"
+    grayscale_div.style.height = `${nowHeight}px`
     grayscale_div.style.display = "block"
-    login_background.style.display = "block"
+    login_background.classList.add("show")
 }
 export function closeLoginArea(){
     const grayscale_div = document.querySelector(".grayscale")
     const login_background = document.querySelector(".login_background") 
     grayscale_div.style.display = "none"
-    login_background.style.display = "none"
+    login_background.classList.remove("show")
 }
 // 切換畫面
 export function switchToRegister(){

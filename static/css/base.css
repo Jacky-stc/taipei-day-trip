@@ -37,43 +37,53 @@ nav{
 .signin{
     font-size: 16px;
 }
-.navbar_list{
-    overflow: hidden;
+ul{
+    margin: 0;
 }
-.navbar_list > button{
+ul >li{
+    display: inline;
+}
+ul{
+    display: flex;
+    align-items: center;
+}
+ul >li >button{
     background-color: #fff;
     color: #000;
     border: none;
     cursor: pointer;
     padding: 0px;
-    margin-left: 20px;
+
 }
-.navbar_list > button:hover{
+ul >li >button:hover{
     transform: scale(1.06);
 }
-.navbar_list > button:active{
+ul >li >button:active{
     transform: scale(1);
 }
 .cart-container{
-    display: inline-block;
-    position: absolute;
-    right: 75px;
-    width: 60px;
+    width: 80px;
     height: 40px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+}
+.cart-container >img{
+    display: block;
 }
 .order-hint{
     display: none;
-    position: absolute;
-    right: 15px;
-    top: -4px;
+    position: relative;
+    right: 10px;
+    top: -10px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     background-color: #ff001d;
     color: #fff;
     font-size: 10px;
+    text-align: center;
 }
 .shopping-block{
     z-index: 300;
@@ -210,9 +220,9 @@ nav{
     to {transform: translateY(0px);}
 }
 .login_background{
-    display: none;
-    z-index: 5555;
+    visibility: hidden;
     position: fixed;
+    z-index: -1;
     top: 9%;
     left: 50%;
     margin-left: -170px;
@@ -220,13 +230,16 @@ nav{
     height: 275px;
     background-color: #448899;
     border-radius: 6px;
-    animation-name: fade_down ;
-    animation-duration:0.5s;
+    transition: 0.8s;
+    transform: translateY(-20px);
+    opacity: 0;
 
 }
-@keyframes fade_down{
-    from {transform: translateY(-20px);}
-    to {transform: translateY(0px);}
+.show{
+    visibility: visible;
+    transform: translateY(0px);
+    opacity: 1;
+    z-index: 3333;
 }
 .login_background>img{
     position: absolute;
@@ -283,13 +296,16 @@ nav{
     padding: 10px 20px;
     width: 310px;
     height: 47px;
-    background-color: #448899;
+    background-color: #65b4c7;
     border: none;
     border-radius: 6px;
     color: #fff;
     font-size: 19px;
     text-align: center;
     cursor: pointer;
+}
+.login_area>form>button:hover,.register_area>form>button:hover{
+    background-color: #448899;
 }
 .login_area>a>div,.register_area>a>div{
     margin: 0px 15px;
