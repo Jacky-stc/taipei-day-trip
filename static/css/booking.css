@@ -85,6 +85,8 @@ main hr{
     margin-top: 35px;
     width: 250px;
     height: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
 }
 .attraction_info{
     display: inline-block;

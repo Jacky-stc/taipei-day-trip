@@ -212,6 +212,7 @@ ul >li >button:active{
     align-items: center;
     background-color: #d94600;
     border-radius: 6px;
+    user-select: none;
     animation-name: fade_up;
     animation-duration: 0.5s;
 }

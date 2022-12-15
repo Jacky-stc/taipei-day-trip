@@ -20,24 +20,40 @@ window.addEventListener("load", ()=>{
     view.hideLoader()
 })
 
-// 下一張圖片
-document.querySelector(".next").addEventListener("click", ()=>{
-    view.viewedImg(imgNow)
-    imgNow ++
-    if(imgNow > imgLength-1){
-        imgNow = 0
-    }
-    view.recentImg(imgNow)
+let index = 0;
+const nextBtn = document.querySelector(".next")
+const prevBtn = document.querySelector(".prev")
+nextBtn.addEventListener("click", ()=>{
+    dot()
+    index ++;
+    carousel()
 })
-// 上一張圖片
-document.querySelector(".prev").addEventListener("click", ()=>{
-    view.viewedImg(imgNow)
-    imgNow --
-    if(imgNow < 0){
-        imgNow = imgLength-1
-    }
-    view.recentImg(imgNow)
+prevBtn.addEventListener("click", ()=>{
+    dot()
+    index --;
+    carousel()
 })
+function carousel(){
+    const imgNum = document.querySelectorAll(".inner img").length
+    if(index < 0){
+        index = imgNum-1;
+    }
+    else if(index > imgNum-1){
+        index = 0;
+    }
+    const outer = document.querySelector(".outer")
+    const inner = document.querySelector(".inner")
+    let width = getComputedStyle(outer).width
+    width = Number(width.slice(0, -2))
+    inner.style.left = `${index * width * -1}px`
+    
+    const dot = document.querySelectorAll(".dot")
+    dot[index].style.backgroundColor = "#000"
+}
+function dot(){
+    const dot = document.querySelectorAll(".dot")
+    dot[index].style.backgroundColor = "#fff"
+}
 
 // 選擇上半天行程
 document.querySelector(".morning_reservation").addEventListener("click",()=>{

@@ -1,5 +1,5 @@
 export class CreateElement{
-    constructor(tag, className, textContent = ""){
+    constructor(tag, className="", textContent = ""){
         this.e = document.createElement(tag)
         this.e.className = className
         this.e.textContent = textContent
@@ -56,6 +56,7 @@ export function cleanPage(){
 // image preload
 export function imgPreload(data){
     const attractionImg = document.getElementById("img")
+    const inner = document.querySelector(".inner")
     const dotList = document.getElementById("dotList")
     const attractionName = document.getElementById("attraction_name")
     const attractionCatmrt = document.getElementById("catMrt")
@@ -63,12 +64,10 @@ export function imgPreload(data){
     const attractionAddress = document.getElementById("address")
     const attractionTrans = document.getElementById("transport")
     const title = document.querySelector("title")
-    let imgLength = 0
-    imgLength = data.data.images.length
     data.data.images.forEach((image)=>{
-        const newImg = new CreateElement("div", "attractionImg").e
-        newImg.style.backgroundImage = `url(${image})`
-        attractionImg.appendChild(newImg)
+        const img = new CreateElement("img").e
+        img.src = image
+        inner.appendChild(img)
         const newDot = new CreateElement("span", "dot").e
         dotList.appendChild(newDot)
     })
@@ -89,29 +88,18 @@ export function hideLoader(){
     loader.classList.remove("show")
     document.querySelector(".preload").style.display = "none"
 }
-// 前一張圖片
-export function viewedImg(imgNow){
-    document.querySelectorAll(".attractionImg")[imgNow].style.display = "none"
-    document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "#fff"
-}
-// 當前圖片
-export function recentImg(imgNow){
-    document.querySelectorAll(".attractionImg")[imgNow].style.display = "block"
-    document.querySelectorAll(".dot")[imgNow].style.backgroundColor = "#000"
-}
-// 選擇上半天行程
+// reservation
 export function morningReservation(){
     document.getElementById("money").textContent = "新台幣2000元"
     document.querySelector(".morning_reservation").style.backgroundColor = "#448899"
     document.querySelector(".afternoon_reservation").style.backgroundColor = ""
 }
-// 選擇下半天行程
 export function afternoonReservation(){
     document.getElementById("money").textContent = "新台幣2500元"    
     document.querySelector(".afternoon_reservation").style.backgroundColor = "#448899"
     document.querySelector(".morning_reservation").style.backgroundColor = ""
 }
-// 會員狀態檢查
+// user status check
 export function userCheck(data){
     const signin = document.querySelector(".signin")
     if(data.data){
