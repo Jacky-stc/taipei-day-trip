@@ -13,7 +13,6 @@
 .inner{
     height: 100%;
     width: 100%;
-    background-color: aquamarine;
     display: flex;
     position: relative;
     left: -0px;
