@@ -1,20 +1,13 @@
 from flask import *
 import mysql.connector
 from mysql.connector import pooling
+from API.model import *
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-dbconfig = {
-    "host" : "localhost",
-    "user" : "root",
-    "password" : "13579jacky",
-    "database" : "taipei_day_trip"
-}
-
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name = "taipei_day_trip",
-    pool_size = 5,
-    pool_reset_session = True,
-    **dbconfig
-)
+dbPassword = os.getenv("dbPassword")
+connection_pool = dbConnection(dbPassword)
 
 category = Blueprint("category", __name__)
 

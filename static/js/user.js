@@ -1,128 +1,120 @@
-// 驗證程序
-fetch("/api/user/auth", {method:'get'})
-.then(response=>{
-    return response.json()
-}).then(data=>{
-    if(data.data){
-        signin.textContent = "登出系統"
-    }else{
-        signin.textContent = "登入/註冊"
-    }
+import * as view from "./view.js"
+import * as model from "./model.js"
+
+// 登入驗證程序
+model.fetchUrl("/api/user/auth","get",view.userCheck)
+
+// 前端註冊驗證
+const register_name = document.querySelector("#register_name")
+register_name.addEventListener("input", ()=>{
+    view.nameCheck()
+})
+const register_email = document.querySelector("#register_email")
+register_email.addEventListener("input", ()=>{
+    view.emailCheck()
+})
+const register_password = document.querySelector("#register_password")
+register_password.addEventListener("input", ()=>{
+    view.passwordCheck()
 })
 
 // 註冊程序
 const register_btn = document.querySelector(".register_btn")
-const hint_container = document.querySelector(".hint_container")
-const hint = document.querySelector(".hint")
+
 register_btn.addEventListener("click",()=>{
-    let register_info = {
-        "name":register_form.name.value.toString(),
-        "email":register_form.email.value.toString(),
-        "password":register_form.password.value.toString()
+    const register_info = {
+        "name":document.querySelector("#register_name").value,
+        "email":document.querySelector("#register_email").value,
+        "password":document.querySelector("#register_password").value
     }
-    fetch("/api/user",{
-        method:'post',
-        headers: {
+    async function registerCheck(){
+        const fetchData = await fetch("/api/user",{
+            method:"post",
+            headers: {
             'Content-type' :'application/json; charset=UTF-8',
-            'Accept':'application/jason'
-        },
-        body: JSON.stringify(register_info)
-    })
-    .then((response)=>{
-        return response.json()
-    }).then((data)=>{
-        if(data["ok"]){
-            hint.textContent = "註冊成功"
-            hint_container.style.display = "block"
-            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
-        }else{
-            hint.textContent = "註冊失敗"
-            hint_container.style.display = "block"
-            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
-        }
-    })
+            'Accept':'application/json'
+            },
+            body: JSON.stringify(register_info)})
+        const fetchResponse = await fetchData.json()
+        view.registerHint(fetchResponse)
+    }
+    registerCheck()
 })
 // 登入程序
 const login_btn = document.querySelector(".login_btn")
 login_btn.addEventListener("click",()=>{
-    let login_info = {
-        "email": login_form.email.value.toString(),
-        "password":login_form.password.value.toString()
+    const login_info = {
+        "email": document.querySelector("#login_email").value,
+        "password":document.querySelector("#login_password").value
     }
-    fetch("/api/user/auth", {
-        method:"PUT",
-        headers: {
+    async function loginCheck(){
+        const fetchData = await fetch("/api/user/auth",{
+            method:"put",
+            headers: {
             'Content-type' :'application/json; charset=UTF-8',
             'Accept':'application/jason'
-        },
-        body: JSON.stringify(login_info)
-    }).then(response=>{
-        return response.json()
-    }).then(data=>{
-        if(data["ok"]){
-            location.reload()
-        }else{
-            hint.textContent = "登入失敗"
-            hint_container.style.display = "block"
-            setTimeout(()=>{hint_container.style.display= "none"}, 2000)
-        }
-        
-    })
+            },
+            body: JSON.stringify(login_info)})
+        const fetchResponse = await fetchData.json()
+        view.loginHint(fetchResponse)
+    }
+    loginCheck()
 })
 
-
-const grayscale_div = document.querySelector(".grayscale")
-const login_background = document.querySelector(".login_background")
-const signin = document.querySelector(".signin")
-const close_btn = document.querySelector(".close")
-const reservation_btn = document.querySelector(".reservation")
-const login = document.querySelector(".login_btn")
-const switch_to_register = document.querySelector(".switch_to_register")
-const switch_to_login = document.querySelector(".switch_to_login")
-
-
-reservation_btn.addEventListener("click", ()=>{
-    location.href = "/booking"
-})
 // 顯示登入區塊
+const signin = document.querySelector(".signin")
 signin.addEventListener("click", ()=>{
     if(signin.textContent == "登入/註冊"){
-        let nowHeight = document.querySelector("body").scrollHeight
-        grayscale_div.style.height = nowHeight + "px"
-        grayscale_div.style.display = "block"
-        login_background.style.display = "block"
+        view.showLoginArea()
     }
-    else{ // 登出程序
-        fetch("/api/user/auth", {method:'delete'})
-        .then(response=>{
-            return response.json()
-        }).then(data=>{
-            if(data.ok){
-                location.reload()
-            }
-        })
+    else{
+        model.fetchUrl("/api/user/auth","delete",view.reload)
     }
 })
+const login_background = document.querySelector(".login_background")
 login_background.addEventListener("click", ()=>{
-    let nowHeight = document.querySelector("body").scrollHeight
-    grayscale_div.style.height = nowHeight + "px"
-    grayscale_div.style.display = "block"
-    login_background.style.display = "block"
+    view.showLoginArea()
 })
 // 關閉按鈕
+const close_btn = document.querySelector(".close")
 close_btn.addEventListener("click", (e)=>{
-    grayscale_div.style.display = "none"
-    login_background.style.display = "none"
+    view.closeLoginArea()
     e.stopPropagation()
 })
 // 切換註冊區塊
+const switch_to_register = document.querySelector(".switch_to_register")
 switch_to_register.addEventListener("click",()=>{
-    document.querySelector(".login_area").style.display = "none"
-    document.querySelector(".register_area").style.display = "block"
+    view.switchToRegister()
 })
 // 切換登入區塊
+const switch_to_login = document.querySelector(".switch_to_login")
 switch_to_login.addEventListener("click",()=>{
-    document.querySelector(".login_area").style.display = "block"
-    document.querySelector(".register_area").style.display = "none"
+    view.switchToLogin()
 })
+// 購物車
+const shoppingBlock = document.querySelector(".shopping-block")
+const cartContainer = document.querySelector(".cart-container")
+cartContainer.addEventListener("mouseover",()=>{
+    shoppingBlock.style.display = "block"
+})
+shoppingBlock.addEventListener("mouseover",()=>{
+    shoppingBlock.style.display = "block"
+})
+window.addEventListener("mouseover", ()=>{
+    shoppingBlock.style.display = "none"
+},true)
+// 查看預訂行程
+const checkOrder = document.querySelector(".check-order")
+checkOrder.addEventListener("click",()=>{
+    model.fetchUrl("/api/user/auth", "get", view.userCheck)
+    .then(data=>{
+        if(data.data === null){
+            view.showLoginArea()
+        }else{
+            location.href = "/booking"
+        }
+    })
+})
+model.fetchUrl("/api/booking", "get", view.shoppingCart)
+
 

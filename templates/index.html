@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+{% extends "base.html" %}
+    {% block css %}
     <link rel="stylesheet" href="/css/index.css">
-    <title>Taipei Trip 台北一日遊</title>
-</head>
-<div class="grayscale"></div>  
-<body>
-    <div class="hint_container">
-        <div class="hint"></div>
-    </div>
-    <header>
-        <nav class="navbar">
-            <a href="/"><div class="navbar_text">台北一日遊</div></a>
-            <div class="navbar_list">
-                <button class="reservation">預定行程</button>
-                <button class="signin">登入/註冊</button>
-            </div>
-        </nav>
-    </header>
+    {% endblock %}
+    {% block body %}
     <div class="hero_section">
         <div class="slogan">
             <div style="font-size: 28px;">輕鬆享受台北一日悠閒</div>
@@ -31,147 +10,11 @@
             <input class="search" placeholder="輸入景點名稱查詢"/><button class="search_btn"></button>
             <div class="cat_list"></div>
         </div>
-        <div class="login_background">
-            <img src="/img/icon_close.png" class="close"/>
-            <div class="login_area">
-                <h3>登入會員帳號</h3>
-                <form id="login_form">
-                    <input type="email" placeholder="輸入電子信箱" name="email"/>
-                    <input type="password" placeholder="輸入密碼" name="password"/>
-                    <button type="button" class="login_btn">登入帳戶</button>
-                </form>
-                <a><div class="switch_to_register">還沒有帳戶？點此註冊</div></a>
-            </div>
-            <div class="register_area">
-                <h3>註冊會員帳號</h3>
-                <form id="register_form">
-                    <input type="text" placeholder="輸入姓名" name="name"/>
-                    <input type="email" placeholder="輸入電子信箱" name="email"/>
-                    <input type="password" placeholder="輸入密碼" name="password"/>
-                    <button type="button" class="register_btn">註冊新帳戶</button>
-                </form>
-                <a><div class="switch_to_login">已經有帳戶了？點此登入</div></a>
-            </div>
-        </div>
     </div>
-    
     <main>
-        <div class="attractions" id="root">
-            <a id="a0" class="a"><div class="components">
-                <div class="image" id="img0">
-                    <div class="name" id="name0"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt0"></div>
-                    <div class="cat" id="cat0"></div>
-                </div>
-            </div></a>
-            <a id="a1" class="a"><div class="components">
-                <div class="image" id="img1">
-                    <div class="name" id="name1"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt1"></div>
-                    <div class="cat" id="cat1"></div>
-                </div>
-            </div></a>
-            <a id="a2" class="a"><div class="components">
-                <div class="image" id="img2">
-                    <div class="name" id="name2"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt2"></div>
-                    <div class="cat" id="cat2"></div>
-                </div>
-            </div></a>
-            <a id="a3" class="a"><div class="components">
-                <div class="image" id="img3">
-                    <div class="name" id="name3"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt3"></div>
-                    <div class="cat" id="cat3"></div>
-                </div>
-            </div></a>
-            <a id="a4" class="a"><div class="components">
-                <div class="image" id="img4">
-                    <div class="name" id="name4"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt4"></div>
-                    <div class="cat" id="cat4"></div>
-                </div>
-            </div></a>
-            <a id="a5" class="a"><div class="components">
-                <div class="image" id="img5">
-                    <div class="name" id="name5"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt5"></div>
-                    <div class="cat" id="cat5"></div>
-                </div>
-            </div></a>
-            <a id="a6" class="a"><div class="components">
-                <div class="image" id="img6">
-                    <div class="name" id="name6"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt6"></div>
-                    <div class="cat" id="cat6"></div>
-                </div>
-            </div></a>
-            <a id="a7" class="a"><div class="components">
-                <div class="image" id="img7">
-                    <div class="name" id="name7"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt7"></div>
-                    <div class="cat" id="cat7"></div>
-                </div>
-            </div></a>
-            <a id="a8" class="a"><div class="components">
-                <div class="image" id="img8">
-                    <div class="name" id="name8"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt8"></div>
-                    <div class="cat" id="cat8"></div>
-                </div>
-            </div></a>
-            <a id="a9" class="a"><div class="components">
-                <div class="image" id="img9">
-                    <div class="name" id="name9"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt9"></div>
-                    <div class="cat" id="cat9"></div>
-                </div>
-            </div></a>
-            <a id="a10" class="a"><div class="components">
-                <div class="image" id="img10">
-                    <div class="name" id="name10"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt10"></div>
-                    <div class="cat" id="cat10"></div>
-                </div>
-            </div></a>
-            <a id="a11" class="a"><div class="components">
-                <div class="image" id="img11">
-                    <div class="name" id="name11"></div>
-                </div>
-                <div class="script">
-                    <div class="mrt" id="mrt11"></div>
-                    <div class="cat" id="cat11"></div>
-                </div>
-            </div></a>
-        </div>
+        <div class="attractions" id="root"></div>
     </main>
-    <footer>
-        <div class="copyright">COPYRIGHT © 2021 台北一日遊</div>
-    </footer>  
-    
-    <script type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript" src="/js/user.js"></script>
-</body>
-</html>
+    {% endblock %}
+    {% block script %}
+    <script type="module" src="/js/index.js"></script>
+    {% endblock %}
