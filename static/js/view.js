@@ -40,7 +40,7 @@ export function category(data){
 export function catInput(categories){
     const inputBar = document.querySelector(".search")
     categories.forEach((category)=>{
-        value.addEventListener("click", ()=>{
+        category.addEventListener("click", ()=>{
             inputBar.value = category.textContent
         })
     })
