@@ -102,8 +102,10 @@ export function afternoonReservation(){
 // user status check
 export function userCheck(data){
     const signin = document.querySelector(".signin")
+    const iconContainer = document.querySelector(".icon-container")
     if(data.data){
         signin.textContent = "登出系統"
+        iconContainer.style.display = "flex"
     }else{
         signin.textContent = "登入/註冊"
     }
@@ -231,12 +233,12 @@ export function bookingPage(data){
             element.remove()
         })
         const info = document.querySelector(".info")
-        const newContent = new CreateElement("div", "content", "目前沒有任何待預定的行程")
+        const newContent = new CreateElement("div", "content margin", "目前沒有任何待預定的行程").e
         info.appendChild(newContent)
         const main = document.querySelector("main")
         main.style.minHeight = `0px`
         const footer = document.querySelector("footer")
-        footer.style.height = `${document.body.scrollHeight-135}px`    
+        footer.style.height = `${document.body.scrollHeight-230}px`    
     }else{
         const attractionImg = document.querySelector(".attraction_img")
         const attarctionTitle = document.querySelector(".attraction_title")
@@ -265,7 +267,7 @@ export function deleteMessage(data){
 export function mainResize(){
     const main = document.querySelector("main")
     const nowHeight = document.body.scrollHeight
-    main.style.minHeight = nowHeight-253 +"px"
+    main.style.minHeight = nowHeight-258 +"px"
 }
 export function shoppingCart(data){
     if(data.data === null){
@@ -290,4 +292,19 @@ export function shoppingCart(data){
         orderHint.style.display = "block"
         orderHint.textContent = "1"
     }
+}
+export function getOrderList(data){
+    Object.values(data).forEach((element)=>{
+        const container = new CreateElement("div", "container").e
+        const image = new CreateElement("div", "image").e
+        const info = new CreateElement("div", "info").e
+        const title = new CreateElement("div", "content title", element.attractionName).e
+        const date = new CreateElement("div", "content date", element.date).e
+        const time = new CreateElement("div", "content time", element.time).e
+        const number = new CreateElement("div", "content number", `訂單編號：${element.number}`).e
+        image.style.backgroundImage = `url(${element.image})`
+        info.append(title, date, time, number)
+        container.append(image, info)
+        document.querySelector("main").appendChild(container)
+    })
 }
