@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-dbpassword = os.getenv("dbpassword")
+dbpassword = os.getenv("dbPassword")
 JWTsecretKey = os.getenv("JWTsecretKey")
 partnerKey = os.getenv("partnerKey")
 merchantId = os.getenv("merchantId")
