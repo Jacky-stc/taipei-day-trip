@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    {% block css %}
+    <link rel="stylesheet" href="/css/thankyou.css"/>
+    {% endblock %}
+    {% block body %}
+    <main>
+        <figure>
+            <img class="order-gif"/>
+        </figure>
+        <div class="order-message">
+            <div>
+                <span class="hint-message"></span><br/>
+                訂單編號為：<span class="order-number"></span><br/>
+                如欲查詢訂單編號請洽服務人員或至〈會員中心〉查詢
+            </div>
+        </div>
+    </main>
+    {% endblock %}
+    {% block script %}
+    <script type="module" src="/js/thankyou.js"></script>
+    {% endblock %}
