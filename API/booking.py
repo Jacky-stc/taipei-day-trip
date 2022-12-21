@@ -24,13 +24,15 @@ def bookingAPI():
                 JWTtoken = request.cookies['JWTtoken']
                 decodedToken = jwt.decode(JWTtoken, JWTsecretKey, algorithms = "HS256")
                 userId = decodedToken['id']
-                sql = """SELECT attractions.id ,attractions.name, attractions.address, 
-                any_value(images.image), any_value(booking.date), any_value(booking.time), 
-                any_value(booking.price) 
+                sql = """
+                SELECT 
+                attractions.id ,attractions.name, attractions.address, 
+                any_value(images.image), 
+                any_value(booking.date), any_value(booking.time), any_value(booking.price) 
                 FROM attractions 
                 INNER JOIN booking on attractions.id = booking.attractionId 
                 INNER JOIN images on attractions.id = images.id 
-                WHERE booking.userId = %s 
+                WHERE booking.userId = %s and status = 1
                 GROUP BY id;"""
                 val = (userId, )
                 cursor.execute(sql, val)
@@ -101,8 +103,8 @@ def bookingAPI():
                 cursor.execute("SELECT * FROM booking WHERE userId = %s"%userId)
                 result = cursor.fetchone()
                 if result:
-                    sql = "UPDATE booking SET attractionId = %s, date = %s, time = %s, price = %s"
-                    val = (attractionId, date, time, price)
+                    sql = "UPDATE booking SET attractionId = %s, date = %s, time = %s, price = %s, status = 1 WHERE userId = %s"
+                    val = (attractionId, date, time, price, userId)
                 else:
                     sql = "INSERT INTO booking (userId, attractionId, date, time, price) VALUE (%s, %s, %s, %s, %s)"
                     val = (userId, attractionId, date, time, price)
