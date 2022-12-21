@@ -23,7 +23,6 @@ bcrypt = Bcrypt()
 @user.route("/user", methods = ['POST'])
 def register():
 	req = request.get_json()
-	print(req['password'])
 	name = req['name']
 	email = req['email']
 	password = req['password']

@@ -22,7 +22,6 @@ orders = Blueprint("orders", __name__)
 @orders.route("/orders", methods = ["POST"])
 def payByPrime():
     req = request.get_json()
-    print(req)
     now = datetime.datetime.now()
     dt = datetime.datetime.strptime(str(now), "%Y-%m-%d %H:%M:%S.%f")
     current_time = dt.strftime("%Y%m%d%H%M%S")
@@ -70,7 +69,6 @@ def payByPrime():
                     "x-api-key": partnerKey
                 }
                 tappay_response = requests.post(url, headers=Headers, json=data).json()
-                print(tappay_response)
                 if tappay_response['status'] == 0:
                     update_sql = """
                         UPDATE payment SET status = 0, msg = %s WHERE orderNumber = %s

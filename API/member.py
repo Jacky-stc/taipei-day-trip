@@ -54,7 +54,6 @@ def memberOrderList():
                     "attractionName": data.attractionName,
                     "image": data.image
                 }         
-            print(data_dict)
             return data_dict, 200
         except Exception as e:
             print(e)
