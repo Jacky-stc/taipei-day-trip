@@ -308,3 +308,18 @@ export function getOrderList(data){
         document.querySelector("main").appendChild(container)
     })
 }
+export function showGrayscale(){
+    const grayscale_div = document.querySelector(".grayscale")
+    const nowHeight = document.querySelector("body").scrollHeight
+    grayscale_div.style.height = `${nowHeight}px`
+    grayscale_div.style.display = "block"
+}
+export function showHint(text){
+    const hintContainer = document.querySelector(".hint_container")
+    const hint = document.querySelector(".hint")
+    hintContainer.style.display = "block"
+    hint.textContent = text
+    setTimeout(()=>{
+        hintContainer.style.display = "none"
+    }, 3000)
+}

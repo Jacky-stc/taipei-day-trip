@@ -43,3 +43,36 @@ export function getBookingInfo(){
     return bookingInfo
 
 }
+export function getOrderInfo(){
+    const orderName = document.querySelector(".order-name").value
+    const orderEmail = document.querySelector(".order-email").value
+    const orderPhone = document.querySelector(".order-phone").value
+    const name = document.querySelector(".attraction_title").textContent.slice(7)
+    const date = document.querySelector(".date").textContent
+    const time = document.querySelector(".time").textContent
+    const price = document.querySelector(".price").textContent.slice(4,-1)
+    const address = document.querySelector(".address").textContent
+    const image = document.querySelector(".attraction_img").src
+    const orderInfoAndPrime = {
+        "prime": result.card.prime,
+        "order":{
+            "price": Number(price),
+            "trip":{
+                "attraction":{
+                    "id": attractionId,
+                    "name": name,
+                    "address": address,
+                    "image": image
+                },
+                "date": date,
+                "time": time
+            },
+            "contact": {
+                "name": orderName,
+                "email": orderEmail,
+                "phone": orderPhone
+            }
+        }
+    }
+    return orderInfoAndPrime
+}

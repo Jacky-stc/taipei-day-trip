@@ -25,7 +25,7 @@ deleteCancel.addEventListener("click", ()=>{
     grayscale.style.display = "none"
 })
 
-let attractionId = 4
+let attractionId = 0
 async function getAttractionId(){
     const fetchData = await fetch("/api/booking", {method:"GET"})
     const fetchResponse = await fetchData.json()
@@ -82,7 +82,6 @@ TPDirect.card.setup({
 })
 const submitButton = document.querySelector(".order_btn")
 TPDirect.card.onUpdate(function(update){
-    console.log(update.canGetPrime)
     if(update.canGetPrime){
         submitButton.removeAttribute("disabled")
     }else{
@@ -95,50 +94,25 @@ submitButton.addEventListener("click", e=>{
     e.preventDefault()
     const tappayStatus = TPDirect.card.getTappayFieldsStatus()
     if(tappayStatus.canGetPrime === false){
-        alert("cant get prime")
+        view.showHint("Can't get prime")
         return
     }
     TPDirect.card.getPrime((result)=>{
         if(result.status !== 0){
-            alert(`get prime error ${result.msg}`)
+            view.showHint(`Get prime error ${result.msg}`)
             return
         }
-        const grayscale_div = document.querySelector(".grayscale")
-        const nowHeight = document.querySelector("body").scrollHeight
-        grayscale_div.style.height = `${nowHeight}px`
-        grayscale_div.style.display = "block"
-        const loader = document.querySelector(".loader")
-        loader.style.display = "block"
         const orderName = document.querySelector(".order-name").value
         const orderEmail = document.querySelector(".order-email").value
         const orderPhone = document.querySelector(".order-phone").value
-        const name = document.querySelector(".attraction_title").textContent.slice(7)
-        const date = document.querySelector(".date").textContent
-        const time = document.querySelector(".time").textContent
-        const price = document.querySelector(".price").textContent.slice(4,-1)
-        const address = document.querySelector(".address").textContent
-        const image = document.querySelector(".attraction_img").src
-        const orderInfoAndPrime = {
-            "prime": result.card.prime,
-            "order":{
-                "price": Number(price),
-                "trip":{
-                    "attraction":{
-                        "id": attractionId,
-                        "name": name,
-                        "address": address,
-                        "image": image
-                    },
-                    "date": date,
-                    "time": time
-                },
-                "contact": {
-                    "name": orderName,
-                    "email": orderEmail,
-                    "phone": orderPhone
-                }
-            }
+        if(!orderName || !orderEmail || !orderPhone){
+            view.showHint("請填寫完整訊息")
+            return
         }
+        const orderInfoAndPrime = model.getOrderInfo()
+        view.showGrayscale()
+        const loader = document.querySelector(".loader")
+        loader.style.display = "block"
         async function sendPrime(){
             const fetchData = await fetch("/api/orders", {
                 method:"POST",

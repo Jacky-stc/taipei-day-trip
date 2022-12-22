@@ -212,7 +212,7 @@ ul >li >button:active{
     z-index: 9999;
 }
 .hint{
-    position: absolute;
+    position: fixed;
     z-index: 9999;
     top: 40%;
     left: 47%;

@@ -15,7 +15,6 @@ orderNumber.textContent = value
 async function checkOrderStatus(){
     const fetchData = await fetch(`/api/orders/${value}`, {method:"get"})
     const fetchResponse = await fetchData.json()
-    console.log(fetchResponse)
     const orderGif = document.querySelector(".order-gif")
     const hintMessage = document.querySelector(".hint-message")
     if(fetchResponse.data.status === 0){
