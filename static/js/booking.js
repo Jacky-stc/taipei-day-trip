@@ -89,6 +89,9 @@ TPDirect.card.onUpdate(function(update){
     }
 })
 
+const nameRegex = new RegExp(/^.+$/)
+const emailRegex = new RegExp(/^\w+@\w+(\.\w+)*\.\w+$/)
+const phoneRegex = new RegExp(/^09\d{8}$/)
 
 submitButton.addEventListener("click", e=>{
     e.preventDefault()
@@ -105,8 +108,20 @@ submitButton.addEventListener("click", e=>{
         const orderName = document.querySelector(".order-name").value
         const orderEmail = document.querySelector(".order-email").value
         const orderPhone = document.querySelector(".order-phone").value
-        if(!orderName || !orderEmail || !orderPhone){
-            view.showHint("請填寫完整訊息")
+        // if(!orderName || !orderEmail || !orderPhone){
+        //     view.showHint("請填寫完整訊息")
+        //     return
+        // }
+        if(!nameRegex.test(orderName)){
+            view.showHint("姓名欄位不能為空")
+            return
+        }
+        if(!emailRegex.test(orderEmail)){
+            view.showHint("不合法的信箱格式")
+            return
+        }
+        if(!phoneRegex.test(orderPhone)){
+            view.showHint("不合法的手機號碼格式")
             return
         }
         const orderInfoAndPrime = model.getOrderInfo()
