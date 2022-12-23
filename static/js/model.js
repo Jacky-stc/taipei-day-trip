@@ -43,7 +43,7 @@ export function getBookingInfo(){
     return bookingInfo
 
 }
-export function getOrderInfo(){
+export function getOrderInfo(result, attractionId){
     const orderName = document.querySelector(".order-name").value
     const orderEmail = document.querySelector(".order-email").value
     const orderPhone = document.querySelector(".order-phone").value
