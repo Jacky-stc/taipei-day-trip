@@ -8,6 +8,27 @@ main hr{
     margin-top: 45px;
     border: 0.5px solid #e8e8e8;
 }
+.loader{
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    margin-top: -110px;
+    left: 50%;
+    margin-left: -25px;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #000;
+    border-right: 8px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: loading 1s linear infinite;
+}
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    30%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);}
+}
 .delete-block{
     display: none;
     z-index: 2000;
@@ -78,6 +99,32 @@ main hr{
 .delete:active{
     transform: translateY(0px);
 }
+.info-container{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.tappay-field-focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.tpfield {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 200px;
+    height: 38px;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #757575;
+}
+.margin{
+    margin-top: 30px;
+}
 
 .attraction_img{
     display: inline-block;
@@ -124,7 +171,7 @@ span{
 }
 .content{
     display: inline-block;
-    margin-top: 30px;
+    margin-right: 5px;
     font-size: 16px;
     font-family: 'Noto Sans TC';
     font-weight: 500;
@@ -148,12 +195,10 @@ input{
     color: #666;
 
 }
-main button{
+.order_btn{
     width: 173px;
-    height: 36px;
     margin-right: 110px;
     padding: 10px 20px;
-    line-height: 19px;
     background-color: #448899;
     border: none;
     border-radius: 5px;
@@ -161,13 +206,9 @@ main button{
     color: #fff;
     cursor: pointer;
 }
-main button:hover{
-    transform: translateY(-2px);
-    box-shadow: 2px 2px 5px #000;
-}
-main button:active{
-    transform: translateY(0px);
-    box-shadow: none;
+.order_btn:disabled{
+    opacity: .3;
+    cursor: not-allowed;
 }
 @media(max-width:1200px){
     nav{

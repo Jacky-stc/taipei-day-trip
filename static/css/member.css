@@ -1,0 +1,46 @@
+h2{
+    text-align: center;
+}
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    background-color: rgb(250, 232, 209);
+    padding: 20px;
+}
+.image{
+    width: 300px;
+    height: 250px;
+    background-size: cover;
+    background-position: top right;
+}
+.info{
+    width: 600px;
+    height: 250px;
+}
+.content{
+    font-size: 16px;
+    color: #666;
+    margin: 20px 0 40px 15px;
+}
+@media(max-width:1200px){
+    .image{
+        width: 40%;
+    }
+    .info{
+        width: 40%;
+    }
+}
+@media(max-width:800px){
+    .container{
+        display: block;
+    }
+    .image{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .info{
+        margin: 0 auto;
+        width: 90%;
+    }
+}

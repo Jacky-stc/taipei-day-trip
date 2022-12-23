@@ -47,6 +47,7 @@ ul >li{
 ul{
     display: flex;
     align-items: center;
+    padding: 0;
 }
 ul >li >button{
     background-color: #fff;
@@ -62,8 +63,23 @@ ul >li >button:hover{
 ul >li >button:active{
     transform: scale(1);
 }
+.icon-container{
+    width: 55px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.user{
+    display: flex;
+}
+.user-icon{
+    width: 24px;
+    height: 24px;
+}
 .cart-container{
-    width: 80px;
+    width: 55px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -91,7 +107,7 @@ ul >li >button:active{
     display: none;
     position: absolute;
     top: 58px;
-    right: 80px;
+    right: 66px;
     width: 400px;
     height: 300px;
     background-color: #fff;
@@ -182,12 +198,10 @@ ul >li >button:active{
     cursor: pointer;
 }
 .check-order:hover{
-    transform: translateY(-2px);
-    box-shadow: 0px 2px 2px 0.5px #555;
+    filter: brightness(1.2);
 }
 .check-order:active{
-    transform: translateY(0px);
-    box-shadow: none;
+    filter: brightness(1);
 }
 .shop-cart{
     vertical-align: bottom;
@@ -198,7 +212,7 @@ ul >li >button:active{
     z-index: 9999;
 }
 .hint{
-    position: absolute;
+    position: fixed;
     z-index: 9999;
     top: 40%;
     left: 47%;
@@ -341,4 +355,12 @@ footer{
     font-size: 16px;
     color: #fff;
     font-family: 'Noto Sans TC';
+}
+@media(max-width:1200px){
+    nav{
+        width: 90%;
+    }
+    main{
+        width: 90%;
+    }
 }

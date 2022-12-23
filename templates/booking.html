@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/css/booking.css">
     {% endblock %}
     {% block body %}
+    <div class="loader"></div>
     <div class="delete-block">
         <div class="delete-message">
             <div style="padding-top: 50px;">是否刪除當前預訂行程？</div>
@@ -34,31 +35,44 @@
     <hr/>
         <div class="info remove">
             <div class="title">您的聯絡資訊</div>
-            <div class="content">聯絡姓名：</div>
-            <input><br/>
-            <div class="content">聯絡信箱：</div>
-            <input><br/>
-            <div class="content">手機號碼：</div>
-            <input><br/>
-            <div class="content">請保持手機連絡，準時抵達，導覽人員將用手機與您聯繫，務必留下正確的連絡方式。</div>
+            <div class="info-container">
+                <div class="content">聯絡姓名：</div>
+                <input class="order-name"><br/>
+            </div>
+            <div class="info-container">
+                <div class="content">聯絡信箱：</div>
+                <input class="order-email"><br/>
+            </div>
+            <div class="info-container">
+                <div class="content">手機號碼：</div>
+                <input class="order-phone"><br/>
+            </div>
+            <div class="content" style="margin-top: 20px;">請保持手機連絡，準時抵達，導覽人員將用手機與您聯繫，務必留下正確的連絡方式。</div>
         </div>
     <hr/>
         <div class="info remove">
-            <div class="title">信用卡付款資訊</div>
-            <div class="content">卡片號碼：</div>
-            <input placeholder="**** **** **** ****"><br/>
-            <div class="content">過期時間：</div>
-            <input placeholder="MM/YY"><br/>
-            <div class="content">驗證密碼：</div>
-            <input placeholder="CVV"><br/>
+            <div class="title" id="card-container">信用卡付款資訊</div>
+            <div class="info-container">
+                <div class="content">卡片號碼：</div>
+                <div class="tpfield" id="card-number"></div>
+            </div>
+            <div class="info-container">
+                <div class="content" >過期時間：</div>
+                <div class="tpfield" id="card-expiration-date"></div>
+            </div>
+            <div class="info-container">
+                <div class="content" >驗證密碼：</div>
+                <div class="tpfield" id="card-ccv"></div>
+            </div>
         </div>
         <hr/>
         <div style="text-align: right;" class="remove">
             <div class="money">總價：新台幣2000元</div>
-            <button class="order_btn">確認訂購並付款</button>
+            <button disabled = "true" type="button" class="order_btn">確認訂購並付款</button>
         </div>
     </main>
     {% endblock %}
     {% block script %}
+    <script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
     <script type="module" src="/js/booking.js"></script>
     {% endblock %}
