@@ -64,12 +64,22 @@ export function imgPreload(data){
     const attractionAddress = document.getElementById("address")
     const attractionTrans = document.getElementById("transport")
     const title = document.querySelector("title")
+    const promises = [];
     data.data.images.forEach((image)=>{
         const img = new CreateElement("img").e
         img.src = image
         inner.appendChild(img)
+        const promise = new Promise((resolve)=>{
+            img.addEventListener("load", ()=>{
+                resolve();
+            })
+        })
+        promises.push(promise)
         const newDot = new CreateElement("span", "dot").e
         dotList.appendChild(newDot)
+    });
+    Promise.all(promises).then(()=>{
+        hideLoader()
     })
     title.textContent = data.data.name
     attractionName.textContent = data.data.name

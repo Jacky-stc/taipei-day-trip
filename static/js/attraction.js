@@ -16,9 +16,7 @@ const attractionIdUrl = "/api/attraction/" + attraction_id;
 view.showLoader()
 model.fetchUrl(attractionIdUrl,"get",view.imgPreload)
 .then(data=>{imgLength = data.data.images.length})
-window.addEventListener("load", ()=>{
-    view.hideLoader()
-})
+
 
 let index = 0;
 const nextBtn = document.querySelector(".next")
