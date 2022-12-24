@@ -295,6 +295,7 @@ export function shoppingCart(data){
 }
 export function getOrderList(data){
     Object.values(data).forEach((element)=>{
+        const orderListContainer = document.querySelector(".order-list-container")
         const container = new CreateElement("div", "container").e
         const image = new CreateElement("div", "image").e
         const info = new CreateElement("div", "info").e
@@ -305,7 +306,7 @@ export function getOrderList(data){
         image.style.backgroundImage = `url(${element.image})`
         info.append(title, date, time, number)
         container.append(image, info)
-        document.querySelector("main").appendChild(container)
+        orderListContainer.appendChild(container)
     })
 }
 export function showGrayscale(){

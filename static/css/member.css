@@ -5,7 +5,7 @@ h2{
     display: flex;
     justify-content: space-evenly;
     margin-top: 40px;
-    background-color: rgb(250, 232, 209);
+    /* background-color: rgb(250, 232, 209); */
     padding: 20px;
 }
 .image{
@@ -22,6 +22,65 @@ h2{
     font-size: 16px;
     color: #666;
     margin: 20px 0 40px 15px;
+}
+.arrow{
+    transition: 0.3s;
+}
+.arrow.rotate{
+    transform: rotateX(180deg);
+    transition: 1s;
+}
+.order-list-title{
+    margin-top: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+    width: 100%;
+    height: 80px;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    background-color: #ddd;
+    cursor: pointer;
+}
+.order-list-title:hover{
+    filter: brightness(1.1);
+}
+.order-list-container{
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    height: 400px;
+    max-height: 0;
+    overflow-y: auto;
+    border-radius: 6px;
+    background-color: bisque;
+    scrollbar-width: thin;
+    scrollbar-color: #aaa #ddd;
+    transition: 0.3s;
+}
+.order-list-container.expanded{
+    max-height: 600px;
+    transition: 1.4s ease-in-out;
+}
+.order-list-container::-webkit-scrollbar{
+    width: 7px;
+    height: 15px;
+}
+.order-list-container::-webkit-scrollbar-button{
+    background: transparent;
+}
+.order-list-container::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+
+.order-list-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #aaa;
+    border: 1px solid slategrey;
 }
 @media(max-width:1200px){
     .image{
