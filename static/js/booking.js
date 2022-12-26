@@ -29,7 +29,9 @@ let attractionId = 0
 async function getAttractionId(){
     const fetchData = await fetch("/api/booking", {method:"GET"})
     const fetchResponse = await fetchData.json()
-    attractionId = fetchResponse.data.attraction.id
+    if(fetchResponse.data !== null){
+        attractionId = fetchResponse.data.attraction.id;
+    }
 }
 getAttractionId()
 

@@ -21,7 +21,7 @@ def attractions():
 		# 沒有附帶keyword的搜尋
 		if not keyword:
 			connection_object = connection_pool.get_connection()
-			cursor = connection_object.cursor()
+			cursor = connection_object.cursor(dictionary = True)
 			sql = """
 			SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
 			attractions.address, attractions.transport, attractions.mrt, 
@@ -32,6 +32,7 @@ def attractions():
 			val = (page*12, 12)
 			cursor.execute(sql,val)
 			attractions = cursor.fetchall()
+			print(attractions)
 
 			image = imagesInfo(attractions)
 			data = attractionsLoad(attractions,image)
@@ -44,7 +45,7 @@ def attractions():
 		# 附帶keyword進行景點完全比對或名稱模糊比對的搜尋
 		if keyword:
 			connection_object = connection_pool.get_connection()
-			cursor = connection_object.cursor()
+			cursor = connection_object.cursor(dictionary = True)
 			sql = """
 			SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
 			attractions.address, attractions.transport, attractions.mrt, attractions.lat, 
@@ -85,7 +86,7 @@ def attractions():
 def attraction_id(attractionId):
 	try:
 		connection_object = connection_pool.get_connection()
-		cursor = connection_object.cursor()
+		cursor = connection_object.cursor(dictionary = True)
 		cursor.execute("""
 		SELECT attractions.id, attractions.name, attractions.category, attractions.description, 
 		attractions.address, attractions.transport, attractions.mrt, attractions.lat, 
