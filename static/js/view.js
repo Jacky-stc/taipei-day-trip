@@ -356,3 +356,43 @@ export function showHint(text) {
     hintContainer.style.display = "none";
   }, 3000);
 }
+export function getObjectFromS3(fetchResponse) {
+  const memberImg = document.querySelector(".member-img");
+  if (fetchResponse.data === null) {
+    return;
+  } else {
+    memberImg.style.backgroundImage = `url("${fetchResponse.data}")`;
+  }
+}
+export function getMemberInfo(fetchResponse) {
+  const memberName = document.querySelector(".name");
+  const memberBirth = document.querySelector(".birth");
+  const memberGender = document.querySelector(".gender");
+  const memberPhone = document.querySelector(".phone");
+  const memberEmail = document.querySelector(".email");
+  memberName.value = fetchResponse.member.name;
+  memberBirth.value = fetchResponse.member.birth;
+  memberGender.value = fetchResponse.member.gender;
+  memberPhone.value = fetchResponse.member.phone;
+  memberEmail.value = fetchResponse.member.email;
+}
+export function showOrderList() {
+  const orderList = document.querySelector(".order-list");
+  const orderListArrow = document.querySelector("#order-list .arrow");
+  orderList.classList.toggle("expanded");
+  orderListArrow.classList.toggle("rotate");
+}
+export function showProfile() {
+  const profile = document.querySelector(".profile");
+  const profileArrow = document.querySelector("#profile .arrow");
+  profile.classList.toggle("expanded");
+  profileArrow.classList.toggle("rotate");
+}
+export function checkRegex(regex, value, hint) {
+  if (!regex.test(value)) {
+    showHint(hint);
+    return false;
+  } else {
+    return true;
+  }
+}

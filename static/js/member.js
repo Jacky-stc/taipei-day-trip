@@ -1,22 +1,21 @@
 import * as view from "./view.js";
 import * as model from "./model.js";
 
-model.fetchUrl("/api/member", "GET", view.getOrderList);
-
 view.mainResize();
 
+model.fetchUrl("/api/member", "GET", view.getOrderList);
+model.fetchUrl("/api/member/s3", "GET", view.getObjectFromS3);
+model.fetchUrl("/api/member/info", "GET", view.getMemberInfo);
+
 const orderListOuter = document.querySelector("#order-list");
-const orderList = document.querySelector(".order-list");
-const orderListArrow = document.querySelector("#order-list .arrow");
 orderListOuter.addEventListener("click", () => {
-  orderList.classList.toggle("expanded");
-  orderListArrow.classList.toggle("rotate");
+  view.showOrderList();
 });
 const profileOuter = document.querySelector("#profile");
-const profile = document.querySelector(".profile");
 profileOuter.addEventListener("click", () => {
-  profile.classList.toggle("expanded");
+  view.showProfile();
 });
+
 const cameraIcon = document.querySelector(".camera-icon");
 const uploadImg = document.querySelector(".upload-img");
 const memberImg = document.querySelector(".member-img");
@@ -33,42 +32,28 @@ uploadImg.addEventListener("change", (e) => {
   });
 });
 
-async function getObjectFromS3() {
-  const fetchData = await fetch("/api/member/s3", { method: "GET" });
-  const fetchResponse = await fetchData.json();
-  if (fetchResponse.data === null) {
-    return;
-  } else {
-    memberImg.style.backgroundImage = `url("${fetchResponse.data}")`;
-  }
-}
-getObjectFromS3();
-
-const memberName = document.querySelector(".name");
-const memberBirth = document.querySelector(".birth");
-const memberGender = document.querySelector(".gender");
-const memberPhone = document.querySelector(".phone");
-const memberEmail = document.querySelector(".email");
-
-async function getMemberInfo() {
-  const fetchData = await fetch("api/member/info", { method: "GET" });
-  const fetchResponse = await fetchData.json();
-  memberName.value = fetchResponse.member.name;
-  memberBirth.value = fetchResponse.member.birth;
-  memberGender.value = fetchResponse.member.gender;
-  memberPhone.value = fetchResponse.member.phone;
-  memberEmail.value = fetchResponse.member.email;
-}
-getMemberInfo();
-
+const storeBtn = document.querySelector(".store-btn");
+storeBtn.addEventListener("click", () => {
+  storeMemberInfo();
+});
 function storeMemberInfo() {
-  const memberInfo = {
-    name: memberName.value,
-    birth: memberBirth.value,
-    gender: memberGender.value,
-    phone: memberPhone.value,
-    email: memberEmail.value,
-  };
+  const memberName = document.querySelector(".name");
+  const memberPhone = document.querySelector(".phone");
+  const memberEmail = document.querySelector(".email");
+  if (!view.checkRegex(model.nameRegex, memberName.value, "姓名欄位不能為空")) {
+    return;
+  }
+  if (
+    !view.checkRegex(model.phoneRegex, memberPhone.value, "不合法的手機格式")
+  ) {
+    return;
+  }
+  if (
+    !view.checkRegex(model.emailRegex, memberEmail.value, "不合法的信箱格式")
+  ) {
+    return;
+  }
+  const memberInfo = model.getMemberInfo();
   const loader = document.querySelector(".loader");
   loader.style.visibility = "visible";
   async function postMemberInfo() {
@@ -98,7 +83,3 @@ function storeMemberInfo() {
   }
   postMemberInfo();
 }
-const storeBtn = document.querySelector(".store-btn");
-storeBtn.addEventListener("click", () => {
-  storeMemberInfo();
-});
