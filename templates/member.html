@@ -1,18 +1,41 @@
 {% extends "base.html" %}
     {% block css %}
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.766.0.min.js"></script>
     <link rel="stylesheet" href="/css/member.css"/>
     {% endblock %}
     {% block body %}
+    
     <main>
         <h2>會員中心</h2>
-        <div class="order-list-title">
+        <div style="position: relative;">
+            <div class="outer" id="profile">
+                <div>會員資料</div>
+                <div class="arrow">&#9662</div>
+            </div>
+            <div class="profile scroll">
+                <div class="imgContainer">
+                    <div class="member-img"></div>
+                    <img src="/img/camera.jpg" class="camera-icon">
+                    <input type="file" accept="image/*" class="upload-img"/>
+                </div>
+                <div class="infoContainer">
+                    <div>姓名</div><input type="text" placeholder="name" class="name" name="name" required/>
+                    <div>出生日期</div><input type="date" class="birth"/>
+                    <div>性別</div><select name="gender" class="gender"><option>男生</option><option>女生</option></select>
+                    <div>電話</div><input type="tel" class="phone" name="phone"/>
+                    <div>聯絡email</div><input type="email" class="email" name="email"/>
+                </div>
+                <div class="btn-container">
+                    <div class="loader"></div>
+                    <button type="button" class="store-btn">儲存</button>
+                </div>
+            </div>
+        </div>
+        <div class="outer" id="order-list">
             <div>歷史訂單</div>
             <div class="arrow">&#9662</div>
         </div>
-        <div style="width: 100%; position: relative;">
-            <div class="order-list-container"></div>
-
-        </div>
+        <div class="order-list scroll"></div>
     </main>
     {% endblock %}
     {% block script %}

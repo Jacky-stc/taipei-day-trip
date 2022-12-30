@@ -72,6 +72,7 @@ signin.addEventListener("click", ()=>{
     }
 })
 const login_background = document.querySelector(".login_background")
+login_background.classList.remove("noshow")
 login_background.addEventListener("click", ()=>{
     view.showLoginArea()
 })

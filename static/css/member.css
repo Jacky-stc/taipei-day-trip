@@ -1,11 +1,14 @@
+main{
+    position: relative;
+}
 h2{
     text-align: center;
+    margin-bottom: 35px;
 }
 .container{
     display: flex;
     justify-content: space-evenly;
     margin-top: 40px;
-    /* background-color: rgb(250, 232, 209); */
     padding: 20px;
 }
 .image{
@@ -18,7 +21,7 @@ h2{
     width: 600px;
     height: 250px;
 }
-.content{
+.order-content{
     font-size: 16px;
     color: #666;
     margin: 20px 0 40px 15px;
@@ -30,12 +33,12 @@ h2{
     transform: rotateX(180deg);
     transition: 1s;
 }
-.order-list-title{
-    margin-top: 90px;
+.outer{
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    margin-top: 15px;
     padding: 30px;
     width: 100%;
     height: 80px;
@@ -46,41 +49,124 @@ h2{
     background-color: #ddd;
     cursor: pointer;
 }
-.order-list-title:hover{
+.outer:hover{
     filter: brightness(1.1);
 }
-.order-list-container{
-    position: absolute;
+.order-list, .profile{
+    position: relative;
     top: -5px;
     width: 100%;
     height: 400px;
     max-height: 0;
     overflow-y: auto;
-    border-radius: 6px;
     background-color: bisque;
+    border-radius: 6px;
     scrollbar-width: thin;
     scrollbar-color: #aaa #ddd;
     transition: 0.3s;
 }
-.order-list-container.expanded{
+.order-list.expanded, .profile.expanded{
     max-height: 600px;
     transition: 1.4s ease-in-out;
 }
-.order-list-container::-webkit-scrollbar{
+.scroll::-webkit-scrollbar{
     width: 7px;
     height: 15px;
 }
-.order-list-container::-webkit-scrollbar-button{
+.scroll::-webkit-scrollbar-button{
     background: transparent;
 }
-.order-list-container::-webkit-scrollbar-track-piece {
+.scroll::-webkit-scrollbar-track-piece {
     background: transparent;
 }
-
-.order-list-container::-webkit-scrollbar-thumb {
+.scroll::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background-color: #aaa;
     border: 1px solid slategrey;
+}
+.imgContainer{
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 40px;
+}
+.infoContainer{
+    display: inline-block;
+    box-sizing: border-box;
+    margin-left: 60px;
+    padding-top: 10px;
+    color: #666;
+}
+input{
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+select{
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 5px ;
+    border: solid 1px #ddd;
+}
+.member-img{
+    margin: auto 50px;
+    margin-top: 20px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #fff;
+    background-image: url("/img/user.png");
+    background-size: cover;
+}
+.upload-img{
+    display: none;
+}
+.camera-icon{
+    position: relative;
+    top: -40px;
+    left: 220px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.btn-container{
+    position: absolute;
+    width: 90px;
+    right: 40px;
+    top: 350px;
+}
+.loader{
+    visibility: hidden;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 10px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-right: 4px solid #000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: loading 1s linear infinite;
+}
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    30%{transform: rotate(180deg);}
+    100%{transform: rotate(360deg);}
+}
+.store-btn{
+    box-sizing: border-box;
+    padding: 5px 8px;
+    background-color: #448899;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+.store-btn:hover{
+    filter: brightness(1.1);
 }
 @media(max-width:1200px){
     .image{
@@ -88,6 +174,15 @@ h2{
     }
     .info{
         width: 40%;
+    }
+    .member-img{
+        margin: 0px;
+    }
+    .btn-container{
+        right: 20px;
+    }
+    .camera-icon{
+        left: 160px;
     }
 }
 @media(max-width:800px){
@@ -101,5 +196,22 @@ h2{
     .info{
         margin: 0 auto;
         width: 90%;
+    }
+    .imgContainer{
+        display: block;
+        width: 80%;
+        margin-top: 20px;
+        height: 250px;
+    }
+    .infoContainer{
+        display: block;
+        width: 80%;
+        margin-left: 40px;
+    }
+    .btn-container{
+        position: relative;
+        margin-bottom: 10px;
+        top: 0px;
+        left: 195px;
     }
 }

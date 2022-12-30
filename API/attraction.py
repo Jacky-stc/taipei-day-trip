@@ -32,8 +32,6 @@ def attractions():
 			val = (page*12, 12)
 			cursor.execute(sql,val)
 			attractions = cursor.fetchall()
-			print(attractions)
-
 			image = imagesInfo(attractions)
 			data = attractionsLoad(attractions,image)
 

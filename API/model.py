@@ -77,4 +77,8 @@ def passwordValid(password) :
     if re.match("\w{8,100}", password):
         return True
     return False
-    
+
+def phoneValid(phone):
+    if re.match("^09\d{8}$", phone):
+        return True
+    return False
