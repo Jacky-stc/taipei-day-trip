@@ -111,6 +111,15 @@ export function afternoonReservation() {
     "#448899";
   document.querySelector(".morning_reservation").style.backgroundColor = "";
 }
+export function orderDateLimit() {
+  const orderDate = document.querySelector(".date");
+  let today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const yyyy = today.getFullYear();
+  today = `${yyyy}-${mm}-${dd}`;
+  orderDate.setAttribute("min", today);
+}
 // user status check
 export function userCheck(data) {
   const signin = document.querySelector(".signin");
@@ -244,6 +253,10 @@ export function bookingUser(fetchResponse) {
 export function bookingPage(data) {
   const result = data.data;
   if (result === null) {
+    const footer = document.querySelector("footer");
+    footer.style.height = `${document.body.scrollHeight - 230}px`;
+    const main = document.querySelector("main");
+    main.style.minHeight = `0px`;
     const remove = document.querySelectorAll(".remove");
     remove.forEach((element) => {
       element.remove();
@@ -259,10 +272,11 @@ export function bookingPage(data) {
       "目前沒有任何待預定的行程"
     ).e;
     info.appendChild(newContent);
-    const main = document.querySelector("main");
-    main.style.minHeight = `0px`;
-    const footer = document.querySelector("footer");
-    footer.style.height = `${document.body.scrollHeight - 230}px`;
+    main.style.display = "block";
+    const pageLoaderContainer = document.querySelector(
+      ".page-loader-container"
+    );
+    pageLoaderContainer.style.display = "none";
   } else {
     const attractionImg = document.querySelector(".attraction_img");
     const attarctionTitle = document.querySelector(".attraction_title");
@@ -281,6 +295,12 @@ export function bookingPage(data) {
     }
     price.textContent = `新台幣 ${result.price}元`;
     address.textContent = result.attraction.address;
+    const main = document.querySelector("main");
+    main.style.display = "block";
+    const pageLoaderContainer = document.querySelector(
+      ".page-loader-container"
+    );
+    pageLoaderContainer.style.display = "none";
   }
 }
 export function deleteMessage(data) {
