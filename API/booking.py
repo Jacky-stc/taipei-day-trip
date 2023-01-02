@@ -37,7 +37,6 @@ def bookingAPI():
                 val = (userId, )
                 cursor.execute(sql, val)
                 bookingInfo = cursor.fetchone()
-                print(bookingInfo)
                 if bookingInfo:
                     result = {
                         "attraction":{
