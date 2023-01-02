@@ -1,6 +1,7 @@
 import * as view from "./view.js";
 import * as model from "./model.js";
 
+model.fetchUrl("api/user/auth", "GET", view.memberUser);
 model.fetchUrl("/api/member", "GET", view.getOrderList);
 model.fetchUrl("/api/member/s3", "GET", view.getObjectFromS3);
 model.fetchUrl("/api/member/info", "GET", view.getMemberInfo);

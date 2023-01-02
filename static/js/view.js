@@ -416,3 +416,8 @@ export function checkRegex(regex, value, hint) {
     return true;
   }
 }
+export function memberUser(fetchResponse) {
+  if (fetchResponse.data === null) {
+    location.href = "/";
+  }
+}
