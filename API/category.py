@@ -16,13 +16,13 @@ category = Blueprint("category", __name__)
 def categories():
 	try:
 		connection_object = connection_pool.get_connection()
-		cursor = connection_object.cursor()
+		cursor = connection_object.cursor(dictionary = True)
 		cursor.execute("select distinct category from attractions")
 		categories = cursor.fetchall()
 		result = []
 
 		for category in categories:
-			result.append(category[0])
+			result.append(category['category'])
 
 		response = make_response({"data":result}, 200)
 		response.headers["Content-type"] = "application/json"

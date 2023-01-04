@@ -18,7 +18,7 @@ booking = Blueprint("booking", __name__)
 def bookingAPI():
     if request.method == "GET":
         connection_object = connection_pool.get_connection()
-        cursor = connection_object.cursor()
+        cursor = connection_object.cursor(dictionary = True)
         try:
             if "JWTtoken" in request.cookies:
                 JWTtoken = request.cookies['JWTtoken']
@@ -40,14 +40,14 @@ def bookingAPI():
                 if bookingInfo:
                     result = {
                         "attraction":{
-                            "id":bookingInfo[0],
-                            "name":bookingInfo[1],
-                            "address":bookingInfo[2],
-                            "image":bookingInfo[3]
+                            "id":bookingInfo['id'],
+                            "name":bookingInfo['name'],
+                            "address":bookingInfo['address'],
+                            "image":bookingInfo['any_value(images.image)']
                         },
-                        "date":bookingInfo[4],
-                        "time":bookingInfo[5],
-                        "price":bookingInfo[6]
+                        "date":bookingInfo['any_value(booking.date)'],
+                        "time":bookingInfo['any_value(booking.time)'],
+                        "price":bookingInfo['any_value(booking.price)']
                     }
                     response = make_response({"data":result}, 200)
                 else:

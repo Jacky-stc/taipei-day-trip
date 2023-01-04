@@ -64,7 +64,7 @@ ul >li >button:active{
     transform: scale(1);
 }
 .icon-container{
-    width: 55px;
+    width: 25px;
     height: 40px;
     display: none;
     align-items: center;
@@ -250,6 +250,9 @@ ul >li >button:active{
     transform: translateY(-20px);
     opacity: 0;
 
+}
+.noshow{
+    display: none;
 }
 .show{
     visibility: visible;

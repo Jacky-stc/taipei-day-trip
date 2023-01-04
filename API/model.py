@@ -4,7 +4,7 @@ import re
 
 def imageInfo(image):
     images = []
-    for url in image[9].split(","):
+    for url in image["group_concat(images.image separator ',')"].split(","):
         images.append(url)
     return images
 
@@ -17,15 +17,15 @@ def imagesInfo(attractions):
 
 def  attractionLoad(attraction,images):
     result = {
-        "id":attraction[0],
-        "name":attraction[1],
-        "category":attraction[2],
-        "description":attraction[3],
-        "address":attraction[4],
-        "transport":attraction[5],
-        "mrt":attraction[6],
-        "lat":attraction[7],
-        "lng":attraction[8],
+        "id":attraction['id'],
+        "name":attraction['name'],
+        "category":attraction['category'],
+        "description":attraction['description'],
+        "address":attraction['address'],
+        "transport":attraction['transport'],
+        "mrt":attraction['mrt'],
+        "lat":attraction['lat'],
+        "lng":attraction['lng'],
         "images":images
     }
     return result
@@ -34,15 +34,15 @@ def attractionsLoad(attractions,image):
     data = []
     for i in range(len(attractions)):
         result = {
-            "id":attractions[i][0],
-            "name":attractions[i][1],
-            "category":attractions[i][2],
-            "description":attractions[i][3],
-            "address":attractions[i][4],
-            "transport":attractions[i][5],
-            "mrt":attractions[i][6],
-            "lat":attractions[i][7],
-            "lng":attractions[i][8],
+            "id":attractions[i]['id'],
+            "name":attractions[i]['name'],
+            "category":attractions[i]['category'],
+            "description":attractions[i]['description'],
+            "address":attractions[i]['address'],
+            "transport":attractions[i]['transport'],
+            "mrt":attractions[i]['mrt'],
+            "lat":attractions[i]['lat'],
+            "lng":attractions[i]['lng'],
             "images":image[i]
         }
         data.append(result)
@@ -77,4 +77,8 @@ def passwordValid(password) :
     if re.match("\w{8,100}", password):
         return True
     return False
-    
+
+def phoneValid(phone):
+    if re.match("^09\d{8}$", phone):
+        return True
+    return False
