@@ -1,369 +1,377 @@
-html{
-    height: 100%;
+html {
+  height: 100%;
 }
-body{
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    font-family: 'Noto Sans TC';
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  font-family: "Noto Sans TC";
+  background-color: green;
 }
-.grayscale{
-    display: none;
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    z-index: 1111;
-    background-color: #757575;
-    opacity: 0.4;
+.grayscale {
+  display: none;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  z-index: 1111;
+  background-color: #757575;
+  opacity: 0.4;
 }
-nav{  
-    position: relative;
-    align-items: center;
-    margin: 0 auto;
-    width: 1200px;
-    height: 54px;
-    display: flex;
-    justify-content: space-between;
+nav {
+  position: relative;
+  align-items: center;
+  margin: 0 auto;
+  width: 1200px;
+  height: 54px;
+  display: flex;
+  justify-content: space-between;
 }
-.navbar_text{
-    color: #448899;
-    font-family: 'Noto Sans TC';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
+.navbar_text {
+  color: #448899;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
 }
-.reservation{
-    font-size: 16px;
+.reservation {
+  font-size: 16px;
 }
-.signin{
-    font-size: 16px;
+.signin {
+  font-size: 16px;
 }
-ul{
-    margin: 0;
+ul {
+  margin: 0;
 }
-ul >li{
-    display: inline;
+ul > li {
+  display: inline;
 }
-ul{
-    display: flex;
-    align-items: center;
-    padding: 0;
+ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
-ul >li >button{
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-    padding: 0px;
-
+ul > li > button {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  padding: 0px;
 }
-ul >li >button:hover{
-    transform: scale(1.06);
+ul > li > button:hover {
+  transform: scale(1.06);
 }
-ul >li >button:active{
-    transform: scale(1);
+ul > li > button:active {
+  transform: scale(1);
 }
-.icon-container{
-    width: 25px;
-    height: 40px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.icon-container {
+  width: 25px;
+  height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.user{
-    display: flex;
+.user {
+  display: flex;
 }
-.user-icon{
-    width: 24px;
-    height: 24px;
+.user-icon {
+  width: 24px;
+  height: 24px;
 }
-.cart-container{
-    width: 55px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.cart-container {
+  width: 55px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.cart-container >img{
-    display: block;
+.cart-container > img {
+  display: block;
 }
-.order-hint{
-    display: none;
-    position: relative;
-    right: 10px;
-    top: -10px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: #ff001d;
-    color: #fff;
-    font-size: 10px;
-    text-align: center;
+.order-hint {
+  display: none;
+  position: relative;
+  right: 10px;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff001d;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
 }
-.shopping-block{
-    z-index: 300;
-    display: none;
-    position: absolute;
-    top: 58px;
-    right: 66px;
-    width: 400px;
-    height: 300px;
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 2px 2px 10px 5px #666;
+.shopping-block {
+  z-index: 300;
+  display: none;
+  position: absolute;
+  top: 58px;
+  right: 66px;
+  width: 400px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 10px 5px #666;
 }
-.shopping-block:after{
-    position: absolute;
-    content: "";
-    left: 90%;
-    top: -20px;
-    width: 0px;
-    height: 0px;
-    border-width: 10px;
-    border-style: solid;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-left-color: transparent;
-    border-bottom-color: #fff;
+.shopping-block:after {
+  position: absolute;
+  content: "";
+  left: 90%;
+  top: -20px;
+  width: 0px;
+  height: 0px;
+  border-width: 10px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: #fff;
 }
-.shopping-block >hr{
-    position: relative;
-    border-width: 0.5px;
-    border-top: 0.5px solid #bbb;
-    top: 230px;
+.shopping-block > hr {
+  position: relative;
+  border-width: 0.5px;
+  border-top: 0.5px solid #bbb;
+  top: 230px;
 }
-.ordered-attractions{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin: 15px;
-    display: none;
+.ordered-attractions {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  display: none;
 }
-.ordered-img{
-    width: 120px;
-    height: auto;
-    margin-right: 15px;
+.ordered-img {
+  width: 120px;
+  height: auto;
+  margin-right: 15px;
 }
-.ordered-info{
-    font-size: 16px;
+.ordered-info {
+  font-size: 16px;
 }
-.ordered-info >div{
-    margin-top: 8px;
-    font-family: 'Noto Sans TC';
-    color: #666;
+.ordered-info > div {
+  margin-top: 8px;
+  font-family: "Noto Sans TC";
+  color: #666;
 }
-.profile-cart{
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    margin-left: -60px;
-    width: 120px;
-    height: 120px;
+.profile-cart {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -60px;
+  width: 120px;
+  height: 120px;
 }
-.text{
-    position: absolute;
-    left: 50%;
-    margin-left: -68px;
-    top: 175px;
-    font-size: 16px;
-    color: #999;
-    font-weight: 700;
-    font-family: 'Noto Sans TC';
-    letter-spacing: 1px;
+.text {
+  position: absolute;
+  left: 50%;
+  margin-left: -68px;
+  top: 175px;
+  font-size: 16px;
+  color: #999;
+  font-weight: 700;
+  font-family: "Noto Sans TC";
+  letter-spacing: 1px;
 }
-.order-num{
-    position: relative;
-    left: 3%;
-    top: 76%;
-    color: #666;
-    font-size: 16px;
-    letter-spacing: 1px;
+.order-num {
+  position: relative;
+  left: 3%;
+  top: 76%;
+  color: #666;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
-.check-order{
-    position: relative;
-    display: inline-block;
-    left: 38%;
-    top: 76%;
-    padding: 8px;
-    background-color: #448899;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    font-family: 'Noto Sans TC';
-    cursor: pointer;
+.check-order {
+  position: relative;
+  display: inline-block;
+  left: 38%;
+  top: 76%;
+  padding: 8px;
+  background-color: #448899;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: "Noto Sans TC";
+  cursor: pointer;
 }
-.check-order:hover{
-    filter: brightness(1.2);
+.check-order:hover {
+  filter: brightness(1.2);
 }
-.check-order:active{
-    filter: brightness(1);
+.check-order:active {
+  filter: brightness(1);
 }
-.shop-cart{
-    vertical-align: bottom;
-    cursor: pointer;
+.shop-cart {
+  vertical-align: bottom;
+  cursor: pointer;
 }
-.hint_container{
-    display: none;
-    z-index: 9999;
+.hint_container {
+  display: none;
+  z-index: 9999;
 }
-.hint{
-    position: fixed;
-    z-index: 9999;
-    top: 40%;
-    left: 47%;
-    height: 30px;
-    padding: 2px 10px;
-    color: #fff;
-    font-size: 16px;
-    font-family: 'Noto Sans TC';
-    font-weight: 400;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #d94600;
-    border-radius: 6px;
-    user-select: none;
-    animation-name: fade_up;
-    animation-duration: 0.5s;
+.hint {
+  position: fixed;
+  z-index: 9999;
+  top: 40%;
+  left: 47%;
+  height: 30px;
+  padding: 2px 10px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Noto Sans TC";
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d94600;
+  border-radius: 6px;
+  user-select: none;
+  animation-name: fade_up;
+  animation-duration: 0.5s;
 }
-@keyframes fade_up{
-    from {transform: translateY(10px);}
-    to {transform: translateY(0px);}
-}
-.login_background{
-    visibility: hidden;
-    position: fixed;
-    z-index: -1;
-    top: 9%;
-    left: 50%;
-    margin-left: -170px;
-    width: 340px;
-    height: 275px;
-    background-color: #448899;
-    border-radius: 6px;
-    transition: 0.8s;
-    transform: translateY(-20px);
-    opacity: 0;
-
-}
-.noshow{
-    display: none;
-}
-.show{
-    visibility: visible;
+@keyframes fade_up {
+  from {
+    transform: translateY(10px);
+  }
+  to {
     transform: translateY(0px);
-    opacity: 1;
-    z-index: 3333;
+  }
 }
-.login_background>img{
-    position: absolute;
-    z-index: 100;
-    top: 17px;
-    right: 17px;
-    cursor: pointer;
+.login_background {
+  visibility: hidden;
+  position: fixed;
+  z-index: -1;
+  top: 9%;
+  left: 50%;
+  margin-left: -170px;
+  width: 340px;
+  height: 275px;
+  background-color: #448899;
+  border-radius: 6px;
+  transition: 0.8s;
+  transform: translateY(-20px);
+  opacity: 0;
 }
-.login_background >img:hover{
-    transform: scale(1.1);
+.noshow {
+  display: none;
 }
-.login_area{
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    height: 265px;
-    background-color: #fff;
-    border-radius: 0 0 6px 6px;
+.show {
+  visibility: visible;
+  transform: translateY(0px);
+  opacity: 1;
+  z-index: 3333;
 }
-.register_area{
-    display: none;
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    height: 322px;
-    background-color: #fff;
-    border-radius: 0 0 6px 6px;
+.login_background > img {
+  position: absolute;
+  z-index: 100;
+  top: 17px;
+  right: 17px;
+  cursor: pointer;
 }
-.login_area>h3,.register_area>h3{
-    width: 310px;
-    text-align: center;
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-bottom: 10px;
-    color: #666;
-    font-size: 24px;
-    font-weight: 700;
+.login_background > img:hover {
+  transform: scale(1.1);
 }
-.login_area>form>input,.register_area>form>input{
-    margin: 5px 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 310px;
-    height: 47px;
-    padding: 15px;
-    font-family: 'Noto Sans TC';
-    font-size: 16px;
-    font-weight: 500;
-    color: #757575;
+.login_area {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 265px;
+  background-color: #fff;
+  border-radius: 0 0 6px 6px;
 }
-.login_area>form>button,.register_area>form>button{
-    margin: 5px 15px 10px;
-    padding: 10px 20px;
-    width: 310px;
-    height: 47px;
-    background-color: #65b4c7;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 19px;
-    text-align: center;
-    cursor: pointer;
+.register_area {
+  display: none;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 322px;
+  background-color: #fff;
+  border-radius: 0 0 6px 6px;
 }
-.login_area>form>button:hover,.register_area>form>button:hover{
-    background-color: #448899;
+.login_area > h3,
+.register_area > h3 {
+  width: 310px;
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 24px;
+  font-weight: 700;
 }
-.login_area>a>div,.register_area>a>div{
-    margin: 0px 15px;
-    width: 310px;
-    height: 22px;
-    text-align: center;
-    font-family: 'Noto Sans TC';
-    font-size: 16px;
-    font-weight: 500;
-    color: #666;
-    cursor: pointer;
+.login_area > form > input,
+.register_area > form > input {
+  margin: 5px 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 310px;
+  height: 47px;
+  padding: 15px;
+  font-family: "Noto Sans TC";
+  font-size: 16px;
+  font-weight: 500;
+  color: #757575;
 }
-main{
-    width: 1200px;
-    margin: 50px auto;
+.login_area > form > button,
+.register_area > form > button {
+  margin: 5px 15px 10px;
+  padding: 10px 20px;
+  width: 310px;
+  height: 47px;
+  background-color: #65b4c7;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 19px;
+  text-align: center;
+  cursor: pointer;
 }
-a{
-    text-decoration: none;
+.login_area > form > button:hover,
+.register_area > form > button:hover {
+  background-color: #448899;
 }
-footer{
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height:104px;
-    background-color: #757575;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login_area > a > div,
+.register_area > a > div {
+  margin: 0px 15px;
+  width: 310px;
+  height: 22px;
+  text-align: center;
+  font-family: "Noto Sans TC";
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
 }
-.copyright{
-    font-size: 16px;
-    color: #fff;
-    font-family: 'Noto Sans TC';
+main {
+  width: 1200px;
+  margin: 50px auto;
 }
-@media(max-width:1200px){
-    nav{
-        width: 90%;
-    }
-    main{
-        width: 90%;
-    }
+a {
+  text-decoration: none;
+}
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 104px;
+  background-color: #757575;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.copyright {
+  font-size: 16px;
+  color: #fff;
+  font-family: "Noto Sans TC";
+}
+@media (max-width: 1200px) {
+  nav {
+    width: 90%;
+  }
+  main {
+    width: 90%;
+  }
 }
